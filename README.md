@@ -1,4 +1,4 @@
-# Проект по курсу Android Dev в Otus 
+# Проект "Imgur Express" по курсу Android Dev в Otus 
 
 
 приложение, частично реализует API сервиса Imgur https://apidocs.imgur.com/
