@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.otus.imgur"
+    namespace = "com.imgur"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.otus.imgur"
+        applicationId = "com.imgur"
         minSdk = 26
         targetSdk = 33
         versionCode = 1
