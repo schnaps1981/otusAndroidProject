@@ -4,12 +4,13 @@ plugins {
 }
 
 android {
-    compileSdk = 33
+    compileSdk = Libs.Project.compileSdk
 
-    namespace = "com.imgur.core_api"
+    namespace = "${Libs.Project.applicationId}.core_api"
+
     defaultConfig {
-        minSdk = 26
-        targetSdk = 33
+        minSdk = Libs.Project.minSdk
+        targetSdk = Libs.Project.targetSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -34,13 +35,6 @@ android {
 }
 
 dependencies {
-
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.8.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     implementation(project(":modules:network:api"))
     implementation(project(":modules:database:api"))

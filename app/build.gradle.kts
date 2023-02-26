@@ -5,16 +5,16 @@ plugins {
 }
 
 android {
-    namespace = "com.imgur"
+    namespace = Libs.Project.applicationId
 
-    compileSdk = 33
+    compileSdk = Libs.Project.compileSdk
 
     defaultConfig {
-        applicationId = "com.imgur"
-        minSdk = 26
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = Libs.Project.applicationId
+        minSdk = Libs.Project.minSdk
+        targetSdk = Libs.Project.targetSdk
+        versionCode = Libs.Project.versionCode
+        versionName = Libs.Project.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -39,16 +39,8 @@ android {
 
 dependencies {
 
-    implementation ("androidx.core:core-ktx:1.9.0")
-    implementation ("androidx.appcompat:appcompat:1.6.0")
-    implementation ("com.google.android.material:material:1.8.0")
-    implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
-    testImplementation ("junit:junit:4.13.2")
-    androidTestImplementation ("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
-
-    implementation("com.google.dagger:dagger:2.44.2")
-    kapt("com.google.dagger:dagger-compiler:2.44.2")
+    implementation("com.google.dagger:dagger:${Libs.Deps.daggerVersion}")
+    kapt("com.google.dagger:dagger-compiler:${Libs.Deps.daggerVersion}")
 
     implementation(project(":modules:core:factory"))
     implementation(project(":modules:network:factory"))
