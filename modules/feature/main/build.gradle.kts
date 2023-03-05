@@ -17,6 +17,10 @@ android {
         consumerProguardFiles("consumer-rules.pro")
     }
 
+    buildFeatures.apply {
+        dataBinding = true
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -26,10 +30,12 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -43,11 +49,12 @@ dependencies {
     implementation("androidx.core:core-ktx:${Libs.Deps.coreKtxVersion}")
     implementation("androidx.appcompat:appcompat:${Libs.Deps.appCompatVersion}")
     implementation("com.google.android.material:material:${Libs.Deps.materialVersion}")
+
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Libs.Deps.lifecycleRuntimeVersion}")
+    implementation("androidx.lifecycle:lifecycle-extensions:${Libs.Deps.lifecycleExtensionsVersion}")
+
     implementation("com.google.dagger:dagger:${Libs.Deps.daggerVersion}")
     kapt("com.google.dagger:dagger-compiler:${Libs.Deps.daggerVersion}")
 
     implementation(project(":modules:core:api"))
-    implementation(project(":modules:network:api"))
-    implementation(project(":modules:database:api"))
 }

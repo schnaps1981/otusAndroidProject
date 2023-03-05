@@ -27,6 +27,7 @@ object Libs {
         const val roomVersion = "2.5.0"
 
         const val lifecycleRuntimeVersion = "2.5.1"
+        const val lifecycleExtensionsVersion = "2.2.0"
     }
 
     object TestDeps{
