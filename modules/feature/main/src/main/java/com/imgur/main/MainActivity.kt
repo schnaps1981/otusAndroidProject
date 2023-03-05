@@ -1,6 +1,7 @@
 package com.imgur.main
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +16,8 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
+    private val viewModel: MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -25,6 +28,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.lifecycleOwner = this
 
-        binding.viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
+        binding.viewModel = viewModel
     }
 }

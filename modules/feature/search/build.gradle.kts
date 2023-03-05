@@ -5,8 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "${Libs.Project.applicationId}.main"
-
+    namespace = "${Libs.Project.applicationId}.search"
     compileSdk = Libs.Project.compileSdk
 
     defaultConfig {
@@ -17,7 +16,7 @@ android {
         consumerProguardFiles("consumer-rules.pro")
     }
 
-    buildFeatures.apply {
+    buildFeatures {
         dataBinding = true
     }
 
@@ -30,33 +29,29 @@ android {
             )
         }
     }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-
     kotlinOptions {
         jvmTarget = "1.8"
     }
 }
 
 dependencies {
-    testImplementation("junit:junit:${Libs.TestDeps.junitVersion}")
-    androidTestImplementation("androidx.test.ext:junit:${Libs.TestDeps.junitExtVersion}")
-    androidTestImplementation("androidx.test.espresso:espresso-core:${Libs.TestDeps.espresspVersion}")
 
     implementation("androidx.core:core-ktx:${Libs.Deps.coreKtxVersion}")
     implementation("androidx.appcompat:appcompat:${Libs.Deps.appCompatVersion}")
     implementation("com.google.android.material:material:${Libs.Deps.materialVersion}")
 
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Libs.Deps.lifecycleRuntimeVersion}")
-    implementation("androidx.lifecycle:lifecycle-extensions:${Libs.Deps.lifecycleExtensionsVersion}")
+    testImplementation("junit:junit:${Libs.TestDeps.junitVersion}")
+    androidTestImplementation("androidx.test.ext:junit:${Libs.TestDeps.junitExtVersion}")
+    androidTestImplementation("androidx.test.espresso:espresso-core:${Libs.TestDeps.espresspVersion}")
 
     implementation("com.google.dagger:dagger:${Libs.Deps.daggerVersion}")
     kapt("com.google.dagger:dagger-compiler:${Libs.Deps.daggerVersion}")
 
-    implementation("androidx.activity:activity-ktx:${Libs.Deps.activityKtxVersion}")
+    implementation("androidx.fragment:fragment-ktx:${Libs.Deps.fragmentKtxVersion}")
 
     implementation(project(":modules:core:api"))
     implementation(project(":modules:base_ui"))

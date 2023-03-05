@@ -28,6 +28,9 @@ object Libs {
 
         const val lifecycleRuntimeVersion = "2.5.1"
         const val lifecycleExtensionsVersion = "2.2.0"
+
+        const val activityKtxVersion = "1.6.1"
+        const val fragmentKtxVersion = "1.5.5"
     }
 
     object TestDeps{
