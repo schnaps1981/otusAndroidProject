@@ -59,5 +59,7 @@ dependencies {
     implementation("androidx.activity:activity-ktx:${Libs.Deps.activityKtxVersion}")
 
     implementation(project(":modules:core:api"))
+    implementation(project(":modules:network:api"))
+    implementation(project(":modules:database:api"))
     implementation(project(":modules:base_ui"))
 }

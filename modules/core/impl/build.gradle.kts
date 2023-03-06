@@ -36,4 +36,5 @@ android {
 
 dependencies {
 
+    api(project(":modules:core:api"))
 }
