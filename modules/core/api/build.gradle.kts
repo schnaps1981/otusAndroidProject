@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -36,6 +37,11 @@ android {
 
 dependencies {
 
-    implementation(project(":modules:network:api"))
-    implementation(project(":modules:database:api"))
+    implementation("com.google.dagger:dagger:${Libs.Deps.daggerVersion}")
+    kapt("com.google.dagger:dagger-compiler:${Libs.Deps.daggerVersion}")
+
+    implementation("com.github.terrakok:cicerone:${Libs.Deps.ciceroneVersion}")
+
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.core:core-ktx:1.9.0")
 }

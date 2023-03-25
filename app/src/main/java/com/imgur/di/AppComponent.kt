@@ -11,7 +11,7 @@ import dagger.Component
         AppModule::class
     ]
 )
-interface AppComponent: AppProvider {
+interface AppComponent : AppProvider {
     @Component.Factory
     interface Factory {
         fun create(@BindsInstance context: Context): AppComponent

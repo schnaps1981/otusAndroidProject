@@ -31,9 +31,11 @@ object Libs {
 
         const val activityKtxVersion = "1.6.1"
         const val fragmentKtxVersion = "1.5.5"
+
+        const val ciceroneVersion = "7.1"
     }
 
-    object TestDeps{
+    object TestDeps {
         const val junitVersion = "4.13.2"
         const val junitExtVersion = "1.1.5"
         const val espresspVersion = "3.5.1"

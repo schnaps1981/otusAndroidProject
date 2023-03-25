@@ -2,19 +2,13 @@ package com.imgur.di
 
 import android.app.Application
 import com.imgur.core_api.AppProvider
+import com.imgur.core_api.NavigationProvider
 import com.imgur.core_api.RootProvider
-import com.imgur.database_api.DatabaseProvider
-import com.imgur.database_factory.DatabaseProvidersFactory
-import com.imgur.network_api.NetworkProvider
-import com.imgur.network_factory.NetworkProvidersFactory
+import com.imgur.di.navigation.NavigationComponent
 import dagger.Component
 
 @Component(
-    dependencies = [
-        AppProvider::class,
-        NetworkProvider::class,
-        DatabaseProvider::class
-    ]
+    dependencies = [AppProvider::class, NavigationProvider::class]
 )
 interface RootProviderComponent : RootProvider {
 
@@ -22,16 +16,13 @@ interface RootProviderComponent : RootProvider {
         fun init(application: Application): RootProviderComponent {
 
             val appProvider = AppComponent.create(application)
-            val networkProvider = NetworkProvidersFactory.createNetworkBuilder()
-            val databaseProvider = DatabaseProvidersFactory.createDatabaseBuilder(application)
 
+            val navProvider = NavigationComponent.create()
 
             return DaggerRootProviderComponent.builder()
                 .appProvider(appProvider)
-                .networkProvider(networkProvider)
-                .databaseProvider(databaseProvider)
+                .navigationProvider(navProvider)
                 .build()
         }
-
     }
 }

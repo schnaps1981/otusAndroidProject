@@ -42,16 +42,17 @@ android {
 }
 
 dependencies {
+    implementation("androidx.core:core-ktx:${Libs.Deps.coreKtxVersion}")
+    implementation("androidx.appcompat:appcompat:${Libs.Deps.appCompatVersion}")
 
     implementation("com.google.dagger:dagger:${Libs.Deps.daggerVersion}")
     kapt("com.google.dagger:dagger-compiler:${Libs.Deps.daggerVersion}")
 
+    implementation("com.github.terrakok:cicerone:${Libs.Deps.ciceroneVersion}")
+
     implementation(project(":modules:core:factory"))
-    implementation(project(":modules:network:factory"))
-    implementation(project(":modules:database:factory"))
 
     implementation(project(":modules:feature:main"))
-
     implementation(project(":modules:feature:search"))
     implementation(project(":modules:feature:favorites"))
     implementation(project(":modules:feature:upload"))

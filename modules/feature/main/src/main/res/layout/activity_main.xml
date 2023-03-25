@@ -5,6 +5,10 @@
     <data>
 
         <variable
+            name="bottomNavHandler"
+            type="com.imgur.main.BottomNavHandler" />
+
+        <variable
             name="viewModel"
             type="com.imgur.main.MainViewModel" />
     </data>
@@ -15,24 +19,24 @@
         android:layout_height="match_parent">
 
         <FrameLayout
-            android:id="@+id/fragmentContainer"
+            android:id="@+id/navContainer"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@color/purple_200"
-            app:layout_constraintBottom_toTopOf="@id/navigation"
+            app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/navigation"
+            android:id="@+id/bottomNavigation"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottomMenuHeight"
             android:layout_gravity="start"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/main_menu" />
+            app:menu="@menu/main_menu"
+            app:onNavigationItemSelected="@{bottomNavHandler}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

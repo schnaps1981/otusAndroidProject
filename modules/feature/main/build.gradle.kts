@@ -19,6 +19,7 @@ android {
 
     buildFeatures.apply {
         dataBinding = true
+        viewBinding = true
     }
 
     buildTypes {
@@ -58,8 +59,8 @@ dependencies {
 
     implementation("androidx.activity:activity-ktx:${Libs.Deps.activityKtxVersion}")
 
+    implementation("com.github.terrakok:cicerone:${Libs.Deps.ciceroneVersion}")
+
     implementation(project(":modules:core:api"))
-    implementation(project(":modules:network:api"))
-    implementation(project(":modules:database:api"))
     implementation(project(":modules:base_ui"))
 }
