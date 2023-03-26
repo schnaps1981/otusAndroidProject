@@ -7,7 +7,9 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
-        NetworkModule::class
+        NetworkServiceModule::class,
+        NetworkApiModule::class,
+        MoshiConfigModule::class
     ]
 )
-interface NetworkComponent: NetworkProvider
+interface NetworkComponent : NetworkProvider

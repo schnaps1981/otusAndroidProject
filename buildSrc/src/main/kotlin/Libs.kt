@@ -37,6 +37,8 @@ object Libs {
         const val okHttpVersion = "4.9.3"
         const val retrofitVersion = "2.9.0"
 
+        const val moshiVersion = "1.14.0"
+
     }
 
     object TestDeps {

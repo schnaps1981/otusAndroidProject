@@ -50,6 +50,8 @@ dependencies {
 
     implementation("com.github.terrakok:cicerone:${Libs.Deps.ciceroneVersion}")
 
+    implementation("com.jakewharton.timber:timber:5.0.1")
+
     implementation(project(":modules:core:factory"))
 
     implementation(project(":modules:feature:main"))

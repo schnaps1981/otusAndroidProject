@@ -38,5 +38,10 @@
             app:menu="@menu/main_menu"
             app:onNavigationItemSelected="@{bottomNavHandler}" />
 
+        <FrameLayout
+            android:id="@+id/overlayContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

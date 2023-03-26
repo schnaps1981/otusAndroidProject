@@ -35,5 +35,8 @@ android {
 }
 
 dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
+    implementation("com.squareup.retrofit2:retrofit:${Libs.Deps.retrofitVersion}")
+    implementation("com.squareup.retrofit2:converter-moshi:${Libs.Deps.retrofitVersion}")
 }

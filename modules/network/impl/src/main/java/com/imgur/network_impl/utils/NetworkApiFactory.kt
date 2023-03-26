@@ -1,4 +1,4 @@
-package com.imgur.network_impl.net
+package com.imgur.network_impl.utils
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

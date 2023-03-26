@@ -7,7 +7,7 @@ import dagger.Component
 
 @Component(
     dependencies = [NetworkProvider::class],
-    modules = [SearchFragmentModule::class]
+    modules = [SearchFragmentModule::class, RepositoryModule::class]
 )
 interface SearchComponent {
 

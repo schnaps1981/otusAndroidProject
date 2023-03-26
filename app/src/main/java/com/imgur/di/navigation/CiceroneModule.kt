@@ -3,8 +3,6 @@ package com.imgur.di.navigation
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
-import com.imgur.core_api.BottomNavRouter
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

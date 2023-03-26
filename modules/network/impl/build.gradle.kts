@@ -51,5 +51,10 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:${Libs.Deps.retrofitVersion}")
     implementation("com.squareup.retrofit2:converter-moshi:${Libs.Deps.retrofitVersion}")
 
+    implementation("com.squareup.moshi:moshi-kotlin:${Libs.Deps.moshiVersion}")
+    implementation("com.squareup.moshi:moshi-adapters:${Libs.Deps.moshiVersion}")
+
+    implementation("com.jakewharton.timber:timber:5.0.1")
+
     api(project(":modules:network:api"))
 }

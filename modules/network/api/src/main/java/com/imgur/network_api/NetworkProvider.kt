@@ -1,8 +1,7 @@
 package com.imgur.network_api
 
+import com.imgur.network_api.api.ImgurApi
+
 interface NetworkProvider {
-    //интерфейс-провайдер сетевого запроса ретрофита.
-    //типа imgur.getImages()
-    //то, что даст непосредственно вызовы ретрофита
-    fun provideNetworkRequest(): NetRequest
+    fun provideImgurApi(): ImgurApi
 }

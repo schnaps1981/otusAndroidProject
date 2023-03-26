@@ -40,6 +40,13 @@ class SearchFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel.data.observe(viewLifecycleOwner) {
+            binding.title.text = it.data.firstOrNull()?.account_url ?: "нет ничего"
+
+        }
+    }
+
     companion object {
         val TAG: String = SearchFragment::class.java.simpleName
 
