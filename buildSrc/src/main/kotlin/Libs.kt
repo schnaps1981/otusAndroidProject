@@ -33,6 +33,10 @@ object Libs {
         const val fragmentKtxVersion = "1.5.5"
 
         const val ciceroneVersion = "7.1"
+
+        const val okHttpVersion = "4.9.3"
+        const val retrofitVersion = "2.9.0"
+
     }
 
     object TestDeps {

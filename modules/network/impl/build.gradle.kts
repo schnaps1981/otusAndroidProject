@@ -44,5 +44,12 @@ dependencies {
     implementation("com.google.dagger:dagger:${Libs.Deps.daggerVersion}")
     kapt("com.google.dagger:dagger-compiler:${Libs.Deps.daggerVersion}")
 
+    implementation("com.squareup.okhttp3:okhttp:${Libs.Deps.okHttpVersion}")
+    implementation("com.squareup.okhttp3:okhttp-urlconnection:${Libs.Deps.okHttpVersion}")
+    implementation("com.squareup.okhttp3:logging-interceptor:${Libs.Deps.okHttpVersion}")
+
+    implementation("com.squareup.retrofit2:retrofit:${Libs.Deps.retrofitVersion}")
+    implementation("com.squareup.retrofit2:converter-moshi:${Libs.Deps.retrofitVersion}")
+
     api(project(":modules:network:api"))
 }

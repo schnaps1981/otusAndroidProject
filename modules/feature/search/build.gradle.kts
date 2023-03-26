@@ -18,6 +18,7 @@ android {
 
     buildFeatures {
         dataBinding = true
+        viewBinding = true
     }
 
     buildTypes {
@@ -55,4 +56,6 @@ dependencies {
 
     implementation(project(":modules:core:api"))
     implementation(project(":modules:base_ui"))
+
+    implementation(project(":modules:network:factory"))
 }

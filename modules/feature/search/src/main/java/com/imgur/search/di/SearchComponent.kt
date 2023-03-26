@@ -1,9 +1,12 @@
 package com.imgur.search.di
 
+import com.imgur.network_api.NetworkProvider
+import com.imgur.network_factory.NetworkProvidersFactory
 import com.imgur.search.SearchFragment
 import dagger.Component
 
 @Component(
+    dependencies = [NetworkProvider::class],
     modules = [SearchFragmentModule::class]
 )
 interface SearchComponent {
@@ -12,7 +15,12 @@ interface SearchComponent {
 
     companion object {
         fun create(): SearchComponent {
-            return DaggerSearchComponent.builder().build()
+
+            val networkProvider = NetworkProvidersFactory.createNetworkBuilder()
+
+            return DaggerSearchComponent.builder()
+                .networkProvider(networkProvider)
+                .build()
         }
     }
 }
