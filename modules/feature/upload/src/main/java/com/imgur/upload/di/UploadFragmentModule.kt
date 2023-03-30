@@ -1,13 +1,17 @@
 package com.imgur.upload.di
 
-import androidx.lifecycle.ViewModelProvider
-import com.imgur.upload.UploadViewModelFactory
+import androidx.lifecycle.ViewModel
+import com.imgur.core_api.viewmodel.ViewModelKey
+import com.imgur.upload.UploadViewModel
 import dagger.Binds
 import dagger.Module
+import dagger.multibindings.IntoMap
 
 @Module
 interface UploadFragmentModule {
 
     @Binds
-    fun bindUploadViewModelFactory(searchViewModelFactory: UploadViewModelFactory): ViewModelProvider.Factory
+    @IntoMap
+    @ViewModelKey(UploadViewModel::class)
+    fun bindSearchViewModelFactory(viewModel: UploadViewModel): ViewModel
 }

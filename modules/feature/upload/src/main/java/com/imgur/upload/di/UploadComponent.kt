@@ -1,10 +1,11 @@
 package com.imgur.upload.di
 
+import com.imgur.core_api.viewmodel.ViewModelFactoryModule
 import com.imgur.upload.UploadFragment
 import dagger.Component
 
 @Component(
-    modules = [UploadFragmentModule::class]
+    modules = [UploadFragmentModule::class, ViewModelFactoryModule::class]
 )
 interface UploadComponent {
 
