@@ -63,4 +63,5 @@ dependencies {
     implementation(project(":modules:base_ui"))
 
     implementation(project(":modules:network:factory"))
+    implementation(project(":modules:database:factory"))
 }

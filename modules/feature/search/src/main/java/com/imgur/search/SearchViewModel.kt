@@ -6,11 +6,11 @@ import com.imgur.base_ui.recycler.OnItemClickListener
 import com.imgur.base_ui.recycler.PagedInteraction
 import com.imgur.core_api.extensions.MutableSafeLiveData
 import com.imgur.core_api.extensions.debounce
+import com.imgur.database_api.dto.FavoriteItem
 import com.imgur.network_api.extension.Response
 import com.imgur.search.entity.SearchItemEntity
 import com.imgur.search.repository.SearchRepository
 import kotlinx.coroutines.*
-import timber.log.Timber
 import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(
@@ -108,7 +108,19 @@ class SearchViewModel @Inject constructor(
     }
 
     override fun onItemClick(position: Int, model: SearchItemEntity, resId: Int) {
-        Timber.d("")
+        viewModelScope.launch(Dispatchers.IO) {
+            val favoriteItem = FavoriteItem(
+                imageId = model.id,
+                imageUrl = model.imageUrl,
+                title = model.title
+            )
+
+            val addedItems = repository.addToFavorite(favoriteItem)
+
+            if (addedItems == 0L) {
+                //todo сообщение об ощибке добавления в избранное
+            }
+        }
     }
 
     companion object {

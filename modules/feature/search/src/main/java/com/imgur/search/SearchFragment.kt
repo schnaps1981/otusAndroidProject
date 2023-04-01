@@ -28,7 +28,7 @@ class SearchFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        SearchComponent.create(this).inject(this)
+        SearchComponent.create(requireContext(), this).inject(this)
     }
 
     override fun onCreateView(
