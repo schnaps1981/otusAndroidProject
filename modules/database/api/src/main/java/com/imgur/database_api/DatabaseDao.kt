@@ -1,6 +1,7 @@
 package com.imgur.database_api
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.imgur.database_api.dto.FavoriteItem
@@ -13,4 +14,7 @@ interface FavoritesDao {
 
     @Insert
     suspend fun addFavorite(value: FavoriteItem)
+
+    @Query("DELETE FROM ${DatabaseContract.TABLE_FAVORITES} WHERE image_id = :id")
+    fun deleteById(id: String)
 }

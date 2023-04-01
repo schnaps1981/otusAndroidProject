@@ -16,7 +16,6 @@ class FavoritesFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-
     private val viewModel: FavoritesViewModel by viewModels { viewModelFactory }
 
     private lateinit var binding: FmtFavoritesBinding
@@ -24,7 +23,7 @@ class FavoritesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        FavoritesComponent.create().inject(this)
+        FavoritesComponent.create(requireContext(), this).inject(this)
     }
 
     override fun onCreateView(
