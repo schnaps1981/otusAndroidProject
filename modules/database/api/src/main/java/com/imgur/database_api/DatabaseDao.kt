@@ -3,14 +3,14 @@ package com.imgur.database_api
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.imgur.database_api.dto.StringDto
+import com.imgur.database_api.dto.FavoriteItem
 
 @Dao
-interface DatabaseDao {
+interface FavoritesDao {
 
-    @Query("SELECT * FROM TEST_TABLE")
-    suspend fun getAllDbRecords(): List<String>
+    @Query("SELECT * FROM ${DatabaseContract.TABLE_FAVORITES}")
+    suspend fun getFavorites(): List<FavoriteItem>
 
     @Insert
-    suspend fun addDbRecord(value: StringDto)
+    suspend fun addFavorite(value: FavoriteItem)
 }
