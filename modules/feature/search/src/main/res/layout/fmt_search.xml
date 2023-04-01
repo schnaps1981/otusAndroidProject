@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -12,18 +12,49 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/searchFragmentBackground">
+        android:background="@color/purple_200">
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Search fragment"
-            android:textSize="36dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searchEditText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/search_edit_height"
+            android:layout_marginHorizontal="@dimen/margin_padding_16dp"
+            android:layout_marginTop="@dimen/margin_padding_8dp"
+            android:hint="@string/searchHint"
+            android:imeOptions="actionDone"
+            android:inputType="textFilter"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@={viewModel.searchText}"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/searchSwipe"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:isSwipeRefreshing="@{viewModel.swipeIsRefreshing}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchEditText"
+            app:onSwipeRefresh="@{viewModel::refreshAndSearch}">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/searchItemsList"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="@dimen/margin_padding_16dp"
+                android:layout_marginBottom="@dimen/margin_padding_16dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/searchEditText" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -12,24 +12,23 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.imgur.search.databinding.FmtSearchBinding
 import com.imgur.search.di.SearchComponent
 import com.imgur.search.list.SearchItemAdapter
-import timber.log.Timber
 import javax.inject.Inject
 
 class SearchFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel: SearchViewModel by viewModels { viewModelFactory }
 
     private lateinit var binding: FmtSearchBinding
 
-    private val viewModel: SearchViewModel by viewModels { viewModelFactory }
-
-    private val adapter by lazy { SearchItemAdapter(viewModel) }
+    @Inject
+    lateinit var adapter: SearchItemAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        SearchComponent.create().inject(this)
+        SearchComponent.create(this).inject(this)
     }
 
     override fun onCreateView(
@@ -42,8 +41,6 @@ class SearchFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        //adapter.setHasStableIds(true)
-
         with(binding.searchItemsList) {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = this@SearchFragment.adapter
@@ -54,9 +51,8 @@ class SearchFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.items.observe(viewLifecycleOwner) {
+        viewModel.searchResult.observe(viewLifecycleOwner) {
             adapter.submitList(it)
-            Timber.d("$it")
         }
     }
 

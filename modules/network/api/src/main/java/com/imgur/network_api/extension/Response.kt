@@ -10,6 +10,4 @@ sealed class Response<out T> {
         val errorCode: Int?,
         val errorBody: ResponseBody?
     ) : Response<Nothing>()
-
-    object Loading : Response<Nothing>()
 }

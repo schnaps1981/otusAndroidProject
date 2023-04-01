@@ -54,6 +54,11 @@ dependencies {
 
     implementation("androidx.fragment:fragment-ktx:${Libs.Deps.fragmentKtxVersion}")
 
+    implementation("com.jakewharton.timber:timber:5.0.1")
+
+    implementation("androidx.recyclerview:recyclerview:1.3.0")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
     implementation(project(":modules:core:api"))
     implementation(project(":modules:base_ui"))
 

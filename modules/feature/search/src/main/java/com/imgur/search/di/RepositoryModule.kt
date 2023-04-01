@@ -1,7 +1,7 @@
 package com.imgur.search.di
 
-import com.imgur.search.repository.ImgurAccountRepository
-import com.imgur.search.repository.ImgurAccountRepositoryImpl
+import com.imgur.search.repository.SearchRepository
+import com.imgur.search.repository.SearchRepositoryImpl
 import dagger.Binds
 import dagger.Module
 
@@ -9,5 +9,5 @@ import dagger.Module
 interface RepositoryModule {
 
     @Binds
-    fun bindImgurRepository(repositoryImpl: ImgurAccountRepositoryImpl): ImgurAccountRepository
+    fun bindImgurRepository(repositoryImpl: SearchRepositoryImpl): SearchRepository
 }
