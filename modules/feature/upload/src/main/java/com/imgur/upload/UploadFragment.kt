@@ -11,8 +11,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.imgur.upload.databinding.FmtUploadBinding
 import com.imgur.upload.di.UploadComponent
+import com.imgur.upload.list.AccountImagesItemAdapter
 import javax.inject.Inject
 
 class UploadFragment : Fragment() {
@@ -22,6 +24,9 @@ class UploadFragment : Fragment() {
     private val viewModel: UploadViewModel by viewModels { viewModelFactory }
 
     private lateinit var binding: FmtUploadBinding
+
+    @Inject
+    lateinit var adapter: AccountImagesItemAdapter
 
     private val pickMedia =
         registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
@@ -56,7 +61,21 @@ class UploadFragment : Fragment() {
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
 
+        with(binding.uploadItemsList) {
+            adapter = this@UploadFragment.adapter
+            layoutManager = LinearLayoutManager(requireContext())
+            itemAnimator = null
+        }
+
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.items.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
     }
 
     companion object {

@@ -1,4 +1,4 @@
-package com.imgur.upload.models
+package com.imgur.upload.entity
 
 class ReadFileResult(
     val fileName: String,

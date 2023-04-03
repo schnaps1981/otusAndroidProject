@@ -58,6 +58,9 @@ dependencies {
     implementation("com.jakewharton.timber:timber:5.0.1")
     implementation("com.squareup.okhttp3:okhttp:${Libs.Deps.okHttpVersion}")
 
+    implementation("androidx.recyclerview:recyclerview:1.3.0")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
     implementation(project(":modules:core:api"))
     implementation(project(":modules:base_ui"))
     implementation(project(":modules:network:factory"))

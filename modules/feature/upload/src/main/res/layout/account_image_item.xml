@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="handler"
+            type="com.imgur.base_ui.recycler.OnItemClickListenerBinding" />
+
+        <variable
+            name="model"
+            type="com.imgur.upload.entity.AccountItemEntity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/searchResultItemImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:padding="@dimen/margin_padding_4dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/searchResultItemTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/purple_200"
+            android:onClick="@{handler::onClickItem}"
+            android:scaleType="centerCrop"
+            app:loadImageUrl="@{model.imageUrl}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_padding_8dp"
+            android:layout_marginBottom="@dimen/margin_padding_4dp"
+            android:gravity="center"
+            android:text="@{model.title}"
+            app:layout_constraintBottom_toBottomOf="@+id/searchResultItemTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

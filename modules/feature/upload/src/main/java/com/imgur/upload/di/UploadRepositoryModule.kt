@@ -1,7 +1,7 @@
 package com.imgur.upload.di
 
-import com.imgur.upload.repository.UploadRepository
-import com.imgur.upload.repository.UploadRepositoryImpl
+import com.imgur.upload.repository.AccountRepository
+import com.imgur.upload.repository.AccountRepositoryImpl
 import dagger.Binds
 import dagger.Module
 
@@ -9,5 +9,5 @@ import dagger.Module
 interface UploadRepositoryModule {
 
     @Binds
-    fun bindUploadRepository(repositoryImpl: UploadRepositoryImpl): UploadRepository
+    fun bindUploadRepository(repositoryImpl: AccountRepositoryImpl): AccountRepository
 }

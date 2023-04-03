@@ -1,5 +1,6 @@
 package com.imgur.network_api.api
 
+import com.imgur.network_api.models.AccountImageResult
 import com.imgur.network_api.models.SearchImageResult
 import com.imgur.network_api.models.UploadResult
 import okhttp3.MultipartBody
@@ -15,9 +16,12 @@ interface ImgurApi {
     ): SearchImageResult
 
     @Multipart
-    @POST("/3/upload")
+    @POST("/3/upload/")
     suspend fun uploadImage(
         @Part image: MultipartBody.Part?,
         @Part("name") name: RequestBody? = null
     ): UploadResult
+
+    @GET("account/me/images/")
+    suspend fun loadAccountImages(): AccountImageResult
 }

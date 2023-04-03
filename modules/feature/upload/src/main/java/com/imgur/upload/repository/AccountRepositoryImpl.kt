@@ -6,16 +6,17 @@ import android.provider.OpenableColumns
 import com.imgur.network_api.api.ImgurApi
 import com.imgur.network_api.extension.Response
 import com.imgur.network_api.extension.safeRun
+import com.imgur.network_api.models.AccountImageResult
 import com.imgur.network_api.models.UploadResult
-import com.imgur.upload.models.ReadFileResult
+import com.imgur.upload.entity.ReadFileResult
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import javax.inject.Inject
 
-class UploadRepositoryImpl @Inject constructor(
+class AccountRepositoryImpl @Inject constructor(
     context: Context,
     private val imgurApi: ImgurApi
-) : UploadRepository {
+) : AccountRepository {
     private val contentResolver = context.contentResolver
 
     override suspend fun uploadImage(uri: Uri): Response<UploadResult> {
@@ -29,6 +30,10 @@ class UploadRepositoryImpl @Inject constructor(
         )
 
         return safeRun { imgurApi.uploadImage(filePart) }
+    }
+
+    override suspend fun loadAccountImages(): Response<AccountImageResult> {
+        return safeRun { imgurApi.loadAccountImages() }
     }
 
     private fun tryReadFile(uri: Uri): ReadFileResult {

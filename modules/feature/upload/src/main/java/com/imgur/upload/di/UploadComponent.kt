@@ -2,6 +2,7 @@ package com.imgur.upload.di
 
 import android.content.Context
 import androidx.lifecycle.ViewModelStoreOwner
+import com.imgur.core_api.scope.FragmentScope
 import com.imgur.core_api.viewmodel.ViewModelFactoryModule
 import com.imgur.network_api.NetworkProvider
 import com.imgur.network_factory.NetworkProvidersFactory
@@ -9,6 +10,7 @@ import com.imgur.upload.UploadFragment
 import dagger.BindsInstance
 import dagger.Component
 
+@FragmentScope
 @Component(
     modules = [
         UploadFragmentModule::class,
