@@ -1,5 +1,5 @@
 rootProject.name = "imgur"
-include (":app")
+include(":app")
 include(":modules:network")
 include(":modules:network:api")
 include(":modules:network:impl")
@@ -18,3 +18,4 @@ include(":modules:feature:search")
 include(":modules:base_ui")
 include(":modules:feature:favorites")
 include(":modules:feature:upload")
+include(":modules:feature:login")
