@@ -16,9 +16,14 @@ interface MainActivityComponent {
 
     fun inject(activity: MainActivity)
 
+    @Component.Factory
+    interface Factory {
+        fun create(rootProvider: RootProvider): MainActivityComponent
+    }
+
     companion object {
         fun create(rootProvider: RootProvider): MainActivityComponent {
-            return DaggerMainActivityComponent.builder().rootProvider(rootProvider).build()
+            return DaggerMainActivityComponent.factory().create(rootProvider)
         }
     }
 }

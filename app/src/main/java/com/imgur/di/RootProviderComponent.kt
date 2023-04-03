@@ -2,8 +2,8 @@ package com.imgur.di
 
 import android.app.Application
 import com.imgur.core_api.AppProvider
-import com.imgur.core_api.NavigationProvider
 import com.imgur.core_api.RootProvider
+import com.imgur.core_api.navigation.NavigationProvider
 import com.imgur.di.navigation.NavigationComponent
 import dagger.Component
 

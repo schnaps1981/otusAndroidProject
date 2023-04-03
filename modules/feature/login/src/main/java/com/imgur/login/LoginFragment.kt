@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.imgur.core_api.AppRootProvider
 import com.imgur.core_api.viewmodel.ViewModelFactory
 import com.imgur.login.databinding.FmtLoginBinding
 import com.imgur.login.di.LoginComponent
@@ -23,7 +24,8 @@ class LoginFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        LoginComponent.create().inject(this)
+        LoginComponent.create((requireActivity().application as AppRootProvider).getRootProvider())
+            .inject(this)
     }
 
     override fun onCreateView(

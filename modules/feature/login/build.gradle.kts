@@ -53,6 +53,8 @@ dependencies {
 
     implementation("androidx.fragment:fragment-ktx:${Libs.Deps.fragmentKtxVersion}")
 
+    implementation("com.github.terrakok:cicerone:${Libs.Deps.ciceroneVersion}")
+
     implementation(project(":modules:core:api"))
     implementation(project(":modules:base"))
 }

@@ -58,5 +58,6 @@ dependencies {
     implementation(project(":modules:feature:search"))
     implementation(project(":modules:feature:favorites"))
     implementation(project(":modules:feature:upload"))
+    implementation(project(":modules:feature:login"))
     implementation(project(":modules:base"))
 }

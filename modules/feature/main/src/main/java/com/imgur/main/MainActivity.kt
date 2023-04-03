@@ -12,6 +12,7 @@ import com.imgur.core_api.AppRootProvider
 import com.imgur.main.databinding.ActivityMainBinding
 import com.imgur.main.di.MainActivityComponent
 import javax.inject.Inject
+import javax.inject.Named
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,14 +20,21 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-
     private val viewModel: MainViewModel by viewModels { viewModelFactory }
 
     @Inject
+    @Named("bottom")
     lateinit var navigatorHolder: NavigatorHolder
 
+    @Inject
+    @Named("overlay")
+    lateinit var overlayNavigatorHolder: NavigatorHolder
+
     private val navigator: Navigator =
-        AppNavigator(this, R.id.navContainer, this.supportFragmentManager)
+        AppNavigator(this, R.id.navContainer, supportFragmentManager)
+
+    private val overlayNavigator: Navigator =
+        AppNavigator(this, R.id.overlayContainer, supportFragmentManager)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,10 +54,12 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
 
         navigatorHolder.setNavigator(navigator)
+        overlayNavigatorHolder.setNavigator(overlayNavigator)
     }
 
     override fun onPause() {
         navigatorHolder.removeNavigator()
+        overlayNavigatorHolder.removeNavigator()
 
         super.onPause()
     }

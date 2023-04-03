@@ -1,4 +1,4 @@
-package com.imgur.core_api
+package com.imgur.core_api.navigation
 
 interface BottomNavRouter {
 
