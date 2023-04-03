@@ -25,7 +25,8 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
 
-    private val navigator: Navigator = object : AppNavigator(this, R.id.navContainer) {}
+    private val navigator: Navigator =
+        AppNavigator(this, R.id.navContainer, this.supportFragmentManager)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

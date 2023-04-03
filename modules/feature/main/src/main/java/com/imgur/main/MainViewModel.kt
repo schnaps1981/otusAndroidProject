@@ -9,7 +9,7 @@ class MainViewModel @Inject constructor(
     private val bottomNavRouter: BottomNavRouter
 ) : ViewModel(), BottomNavHandler, DefaultLifecycleObserver {
     override fun onNavigationReselectClick(@IdRes item: Int) {
-
+        onNavigationClick(item)
     }
 
     override fun onNavigationClick(@IdRes item: Int) {
@@ -28,17 +28,7 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    override fun onStart(owner: LifecycleOwner) {
+    override fun onCreate(owner: LifecycleOwner) {
         bottomNavRouter.openSearchScreen()
-    }
-}
-
-@Suppress("UNCHECKED_CAST")
-class MainViewModelFactory @Inject constructor(
-    private val bottomNavRouter: BottomNavRouter
-) : ViewModelProvider.Factory {
-
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return MainViewModel(bottomNavRouter) as T
     }
 }
