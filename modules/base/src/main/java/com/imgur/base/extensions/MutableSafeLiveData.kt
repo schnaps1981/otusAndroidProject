@@ -1,4 +1,4 @@
-package com.imgur.core_api.extensions
+package com.imgur.base.extensions
 
 import androidx.lifecycle.MutableLiveData
 
