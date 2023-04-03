@@ -58,6 +58,5 @@ dependencies {
     implementation(project(":modules:feature:search"))
     implementation(project(":modules:feature:favorites"))
     implementation(project(":modules:feature:upload"))
-
-    implementation(project(":modules:base_ui"))
+    implementation(project(":modules:base"))
 }

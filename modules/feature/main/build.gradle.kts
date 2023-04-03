@@ -62,5 +62,5 @@ dependencies {
     implementation("com.github.terrakok:cicerone:${Libs.Deps.ciceroneVersion}")
 
     implementation(project(":modules:core:api"))
-    implementation(project(":modules:base_ui"))
+    implementation(project(":modules:base"))
 }

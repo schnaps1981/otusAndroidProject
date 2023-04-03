@@ -1,4 +1,4 @@
-package com.imgur.base_ui.binding
+package com.imgur.base.binding
 
 import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout

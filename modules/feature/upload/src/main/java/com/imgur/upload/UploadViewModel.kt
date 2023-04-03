@@ -3,8 +3,8 @@ package com.imgur.upload
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.imgur.base_ui.recycler.OnItemClickListener
-import com.imgur.core_api.extensions.MutableSafeLiveData
+import com.imgur.base.recycler.OnItemClickListener
+import com.imgur.base.extensions.MutableSafeLiveData
 import com.imgur.network_api.extension.Response
 import com.imgur.upload.entity.AccountItemEntity
 import com.imgur.upload.repository.AccountRepository

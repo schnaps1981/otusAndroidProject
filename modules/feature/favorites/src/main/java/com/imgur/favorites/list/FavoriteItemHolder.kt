@@ -1,6 +1,6 @@
 package com.imgur.favorites.list
 
-import com.imgur.base_ui.recycler.AbstractHolder
+import com.imgur.base.recycler.AbstractHolder
 import com.imgur.favorites.databinding.FavoriteItemBinding
 import com.imgur.favorites.entity.FavoriteEntity
 

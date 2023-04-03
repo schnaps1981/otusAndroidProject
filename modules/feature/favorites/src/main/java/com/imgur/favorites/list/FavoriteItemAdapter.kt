@@ -4,9 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
-import com.imgur.base_ui.recycler.AbstractRecyclerAdapter
-import com.imgur.base_ui.recycler.OnItemClickListener
-import com.imgur.base_ui.recycler.PagedInteraction
+import com.imgur.base.recycler.AbstractRecyclerAdapter
+import com.imgur.base.recycler.OnItemClickListener
 import com.imgur.favorites.R
 import com.imgur.favorites.entity.FavoriteEntity
 

@@ -1,6 +1,6 @@
 package com.imgur.upload.list
 
-import com.imgur.base_ui.recycler.AbstractHolder
+import com.imgur.base.recycler.AbstractHolder
 import com.imgur.upload.databinding.AccountImageItemBinding
 import com.imgur.upload.entity.AccountItemEntity
 

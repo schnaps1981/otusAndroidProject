@@ -1,4 +1,4 @@
-package com.imgur.base_ui.recycler
+package com.imgur.base.recycler
 
 sealed class PageableLoadedState {
     object Loaded : PageableLoadedState()

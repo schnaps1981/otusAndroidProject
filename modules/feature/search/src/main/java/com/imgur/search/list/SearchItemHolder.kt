@@ -1,6 +1,6 @@
 package com.imgur.search.list
 
-import com.imgur.base_ui.recycler.AbstractHolder
+import com.imgur.base.recycler.AbstractHolder
 import com.imgur.search.databinding.SearchResultItemBinding
 import com.imgur.search.entity.SearchItemEntity
 

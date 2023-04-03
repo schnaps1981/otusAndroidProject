@@ -1,4 +1,4 @@
-package com.imgur.base_ui.binding
+package com.imgur.base.binding
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter

@@ -2,10 +2,10 @@ package com.imgur.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.imgur.base_ui.recycler.OnItemClickListener
-import com.imgur.base_ui.recycler.PagedInteraction
-import com.imgur.core_api.extensions.MutableSafeLiveData
-import com.imgur.core_api.extensions.debounce
+import com.imgur.base.recycler.OnItemClickListener
+import com.imgur.base.recycler.PagedInteraction
+import com.imgur.base.extensions.MutableSafeLiveData
+import com.imgur.base.extensions.debounce
 import com.imgur.database_api.dto.FavoriteItem
 import com.imgur.network_api.extension.Response
 import com.imgur.search.entity.SearchItemEntity

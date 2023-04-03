@@ -62,6 +62,6 @@ dependencies {
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
     implementation(project(":modules:core:api"))
-    implementation(project(":modules:base_ui"))
+    implementation(project(":modules:base"))
     implementation(project(":modules:network:factory"))
 }

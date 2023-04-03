@@ -1,4 +1,4 @@
-package com.imgur.base_ui.recycler
+package com.imgur.base.recycler
 
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
