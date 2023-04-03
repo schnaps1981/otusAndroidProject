@@ -8,8 +8,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.imgur.favorites.databinding.FmtFavoritesBinding
 import com.imgur.favorites.di.FavoritesComponent
+import com.imgur.favorites.list.FavoriteItemAdapter
 import javax.inject.Inject
 
 class FavoritesFragment : Fragment() {
@@ -17,6 +19,9 @@ class FavoritesFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val viewModel: FavoritesViewModel by viewModels { viewModelFactory }
+
+    @Inject
+    lateinit var adapter: FavoriteItemAdapter
 
     private lateinit var binding: FmtFavoritesBinding
 
@@ -36,7 +41,21 @@ class FavoritesFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        with(binding.favoriteList) {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = this@FavoritesFragment.adapter
+            itemAnimator = null
+        }
+
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.favoriteList.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
     }
 
     companion object {

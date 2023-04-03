@@ -11,18 +11,30 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/favoritesFragmentBackground">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Favorites fragment"
-            android:textSize="36dp"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/favoriteSwipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:isSwipeRefreshing="@{viewModel.swipeIsRefreshing}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:onSwipeRefresh="@{viewModel::onRefresh}">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/favoriteList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/margin_padding_16dp"
+                android:layout_marginBottom="@dimen/margin_padding_16dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
