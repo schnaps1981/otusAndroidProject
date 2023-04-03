@@ -3,7 +3,6 @@ package com.imgur.favorites
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.imgur.base_ui.recycler.OnItemClickListener
-import com.imgur.base_ui.recycler.PagedInteraction
 import com.imgur.core_api.extensions.MutableSafeLiveData
 import com.imgur.favorites.entity.FavoriteEntity
 import com.imgur.favorites.repository.FavoriteRepository
@@ -14,10 +13,7 @@ import javax.inject.Inject
 class FavoritesViewModel @Inject constructor(
     private val repository: FavoriteRepository
 ) : ViewModel(),
-    OnItemClickListener<FavoriteEntity>, PagedInteraction {
-
-    override val prefetchDistance: Int
-        get() = 5
+    OnItemClickListener<FavoriteEntity> {
 
     val swipeIsRefreshing = MutableSafeLiveData(false)
 
@@ -28,19 +24,19 @@ class FavoritesViewModel @Inject constructor(
     }
 
     private fun refresh() {
+        swipeIsRefreshing.value = true
+
         viewModelScope.launch(Dispatchers.IO) {
             val list = repository.getFavorites()
 
             favoriteList.postValue(list)
+
+            swipeIsRefreshing.postValue(false)
         }
     }
 
     fun onRefresh() {
-
-    }
-
-    override fun onFetchNext(): Boolean {
-        return true
+        refresh()
     }
 
     override fun onItemClick(position: Int, model: FavoriteEntity, resId: Int) {

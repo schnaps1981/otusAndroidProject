@@ -31,7 +31,7 @@ interface FavoritesFragmentModule {
         ): FavoriteItemAdapter {
             val viewModel = ViewModelProvider(vmStore, factory)[FavoritesViewModel::class.java]
 
-            return FavoriteItemAdapter(viewModel, viewModel)
+            return FavoriteItemAdapter(viewModel)
         }
     }
 }

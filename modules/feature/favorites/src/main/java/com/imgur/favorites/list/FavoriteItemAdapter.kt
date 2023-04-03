@@ -11,10 +11,9 @@ import com.imgur.favorites.R
 import com.imgur.favorites.entity.FavoriteEntity
 
 class FavoriteItemAdapter(
-    onItemClickListener: OnItemClickListener<FavoriteEntity>,
-    pagedInteraction: PagedInteraction
+    onItemClickListener: OnItemClickListener<FavoriteEntity>
 ) : AbstractRecyclerAdapter<FavoriteEntity, FavoriteItemHolder>(
-    ITEM_COMPARATOR, pagedInteraction, onItemClickListener
+    ITEM_COMPARATOR, null, onItemClickListener
 ) {
     override fun onInitViewHolder(
         parent: ViewGroup,

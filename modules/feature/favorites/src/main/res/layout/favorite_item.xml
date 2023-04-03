@@ -14,32 +14,49 @@
             type="com.imgur.favorites.entity.FavoriteEntity" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/searchResultItemImage"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:padding="@dimen/margin_padding_4dp">
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/margin_padding_4dp"
+        app:cardBackgroundColor="@color/purple_200"
+        android:padding="@dimen/margin_padding_16dp"
+        app:cardCornerRadius="@dimen/margin_padding_8dp">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/searchResultItemTitle"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/searchResultItemImage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/purple_200"
-            android:onClick="@{handler::onClickItem}"
-            android:scaleType="centerCrop"
-            app:loadImageUrl="@{model.url}" />
+            android:layout_height="200dp"
+            android:padding="@dimen/margin_padding_4dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_padding_8dp"
-            android:layout_marginBottom="@dimen/margin_padding_4dp"
-            android:gravity="center"
-            android:text="@{model.title}"
-            app:layout_constraintBottom_toBottomOf="@+id/searchResultItemTitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="title" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/searchResultItemTitle"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="@dimen/margin_padding_8dp"
+                android:background="@color/purple_500"
+                android:onClick="@{handler::onClickItem}"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toTopOf="@+id/textView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:loadImageUrl="@{model.url}"
+                tools:layout_editor_absoluteX="4dp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_padding_8dp"
+                android:layout_marginBottom="@dimen/margin_padding_4dp"
+                android:gravity="center"
+                android:text="@{model.title}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="title" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
 </layout>
