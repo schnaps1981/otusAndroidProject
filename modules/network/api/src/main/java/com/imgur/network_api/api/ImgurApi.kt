@@ -1,9 +1,10 @@
 package com.imgur.network_api.api
 
 import com.imgur.network_api.models.SearchImageResult
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import com.imgur.network_api.models.UploadResult
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.http.*
 
 interface ImgurApi {
 
@@ -12,4 +13,11 @@ interface ImgurApi {
         @Path("page") pageNum: Int,
         @Query("q") query: String
     ): SearchImageResult
+
+    @Multipart
+    @POST("/3/upload")
+    suspend fun uploadImage(
+        @Part image: MultipartBody.Part?,
+        @Part("name") name: RequestBody? = null
+    ): UploadResult
 }

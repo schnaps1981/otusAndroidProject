@@ -12,17 +12,27 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/uploadFragmentBackground">
+        android:paddingHorizontal="@dimen/margin_padding_16dp"
+        android:paddingBottom="@dimen/margin_padding_8dp">
 
-        <TextView
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/imageChooser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Upload fragment"
-            android:textSize="36dp"
+            android:text="@string/uploadChoose"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imageLoader"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/imageLoader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/uploadUpload"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@id/imageChooser" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

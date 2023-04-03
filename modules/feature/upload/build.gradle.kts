@@ -53,6 +53,12 @@ dependencies {
 
     implementation("androidx.fragment:fragment-ktx:${Libs.Deps.fragmentKtxVersion}")
 
+    implementation("androidx.activity:activity-ktx:1.7.0")
+
+    implementation("com.jakewharton.timber:timber:5.0.1")
+    implementation("com.squareup.okhttp3:okhttp:${Libs.Deps.okHttpVersion}")
+
     implementation(project(":modules:core:api"))
     implementation(project(":modules:base_ui"))
+    implementation(project(":modules:network:factory"))
 }

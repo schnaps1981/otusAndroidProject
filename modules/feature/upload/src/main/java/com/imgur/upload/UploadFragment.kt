@@ -1,9 +1,12 @@
 package com.imgur.upload
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -16,15 +19,27 @@ class UploadFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel: UploadViewModel by viewModels { viewModelFactory }
 
     private lateinit var binding: FmtUploadBinding
 
-    private val viewModel: UploadViewModel by viewModels { viewModelFactory }
+    private val pickMedia =
+        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+            if (uri != null) {
+                val flag = Intent.FLAG_GRANT_READ_URI_PERMISSION
+                requireContext().contentResolver.takePersistableUriPermission(uri, flag)
+
+                viewModel.chooseImage(uri)
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        UploadComponent.create().inject(this)
+        UploadComponent.create(
+            requireActivity().applicationContext,
+            this
+        ).inject(this)
     }
 
     override fun onCreateView(
@@ -36,6 +51,10 @@ class UploadFragment : Fragment() {
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        binding.imageChooser.setOnClickListener {
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        }
 
         return binding.root
     }
