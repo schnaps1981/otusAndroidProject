@@ -55,6 +55,10 @@ dependencies {
 
     implementation("com.github.terrakok:cicerone:${Libs.Deps.ciceroneVersion}")
 
+    implementation("androidx.webkit:webkit:1.6.1")
+
+    implementation("com.jakewharton.timber:timber:5.0.1")
+
     implementation(project(":modules:core:api"))
     implementation(project(":modules:base"))
 }

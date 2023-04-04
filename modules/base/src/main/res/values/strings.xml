@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="uploadChoose">Выбрать…</string>
-    <string name="uploadUpload">Выгрузить</string>
+
+    <string name="loginLoginBtn">Логин в Imgur</string>
 
 </resources>

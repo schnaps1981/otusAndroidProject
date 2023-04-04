@@ -4,5 +4,7 @@ interface OverlayNavRouter {
 
     fun openLoginScreen()
 
-    fun back()
+    fun finish()
+
+    fun openMainScreen()
 }
