@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -35,6 +36,10 @@ android {
 }
 
 dependencies {
+    implementation("com.google.dagger:dagger:${Libs.Deps.daggerVersion}")
+    kapt("com.google.dagger:dagger-compiler:${Libs.Deps.daggerVersion}")
+
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 
     api(project(":modules:core:api"))
 }
