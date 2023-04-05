@@ -15,7 +15,7 @@ class FavoriteRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun deleteById(id: String) {
-        favoritesDao.deleteById(id)
+    override suspend fun deleteById(id: String): Int {
+        return favoritesDao.deleteById(id)
     }
 }

@@ -15,5 +15,5 @@ interface FavoritesDao {
     suspend fun addFavorite(value: FavoriteItem): Long
 
     @Query("DELETE FROM ${DatabaseContract.TABLE_FAVORITES} WHERE image_id = :id")
-    fun deleteById(id: String)
+    fun deleteById(id: String): Int
 }

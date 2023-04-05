@@ -6,5 +6,5 @@ interface FavoriteRepository {
 
     suspend fun getFavorites(): List<FavoriteEntity>
 
-    suspend fun deleteById(id: String)
+    suspend fun deleteById(id: String): Int
 }
