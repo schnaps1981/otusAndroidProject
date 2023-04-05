@@ -1,5 +1,6 @@
 package com.imgur.core_api.datastore
 
+import com.imgur.core_api.models.ImgurAccessToken
 import kotlinx.coroutines.flow.Flow
 
 interface UserPreferences {
@@ -7,7 +8,9 @@ interface UserPreferences {
 
     val refreshToken: Flow<String?>
 
-    suspend fun saveTokens(accessToken: String?, refreshToken: String?)
+    val expiresToken: Flow<Long?>
+
+    suspend fun saveTokens(tokenModel: ImgurAccessToken)
 
     suspend fun clear()
 }

@@ -6,9 +6,9 @@ import java.util.*
 
 data class ImgurAccessToken(
     val accessToken: String = "",
+    val refreshToken: String = "",
     val tokenType: String = "",
     val expiresIn: String = "",
-    val refreshToken: String = "",
     val accountUsername: String = "",
     val accountId: String = "",
     val createdAt: Date = Date()

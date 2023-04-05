@@ -11,15 +11,18 @@ import com.imgur.core_api.navigation.OverlayNavRouter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import java.util.*
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
     private val bottomNavRouter: BottomNavRouter,
     private val overlayNavRouter: OverlayNavRouter,
-    userPreferences: UserPreferences
+    private val userPreferences: UserPreferences
 ) : ViewModel(), BottomNavHandler, DefaultLifecycleObserver {
 
-    private val accessToken = userPreferences.accessToken
+    private val accessToken: String
+        get() = runBlocking { userPreferences.accessToken.first() ?: "" }
 
     override fun onNavigationReselectClick(@IdRes item: Int) {
         onNavigationClick(item)
@@ -43,9 +46,8 @@ class MainViewModel @Inject constructor(
 
     override fun onCreate(owner: LifecycleOwner) {
         viewModelScope.launch(Dispatchers.IO) {
-            val hasAccessToken = !accessToken.first().isNullOrEmpty()
 
-            if (hasAccessToken) {
+            if (accessToken.isNotEmpty()) {
                 bottomNavRouter.openSearchScreen()
             } else {
                 overlayNavRouter.openLoginScreen()

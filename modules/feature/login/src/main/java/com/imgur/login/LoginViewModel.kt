@@ -39,7 +39,7 @@ class LoginViewModel @Inject constructor(
         this.token = token
 
         viewModelScope.launch {
-            preferences.saveTokens(token.accessToken, token.refreshToken)
+            preferences.saveTokens(token)
 
             onBackClick()
         }
