@@ -18,8 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/margin_padding_4dp"
-        app:cardBackgroundColor="@color/purple_200"
         android:padding="@dimen/margin_padding_16dp"
+        app:cardBackgroundColor="@color/purple_200"
         app:cardCornerRadius="@dimen/margin_padding_8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -40,6 +40,17 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:loadImageUrl="@{model.url}"
                 tools:layout_editor_absoluteX="4dp" />
+
+            <com.imgur.base.widget.IconButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/margin_padding_8dp"
+                android:layout_marginEnd="@dimen/margin_padding_8dp"
+                app:clickListener="@{handler::onClickItem}"
+                app:icon="@drawable/ic_delete"
+                app:tintColor="@color/white"/>
 
             <TextView
                 android:id="@+id/textView"
