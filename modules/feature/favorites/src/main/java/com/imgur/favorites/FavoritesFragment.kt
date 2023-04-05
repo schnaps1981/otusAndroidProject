@@ -28,7 +28,7 @@ class FavoritesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        FavoritesComponent.create(requireContext(), this).inject(this)
+        FavoritesComponent.create(requireActivity().applicationContext, this).inject(this)
     }
 
     override fun onCreateView(
