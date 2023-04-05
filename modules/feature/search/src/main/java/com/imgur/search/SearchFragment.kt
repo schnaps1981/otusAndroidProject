@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.imgur.core_api.AppRootProvider
 import com.imgur.search.databinding.FmtSearchBinding
 import com.imgur.search.di.SearchComponent
 import com.imgur.search.list.SearchItemAdapter
@@ -28,7 +29,8 @@ class SearchFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        SearchComponent.create(requireContext(), this).inject(this)
+        val rootProvider = (requireActivity().application as AppRootProvider).getRootProvider()
+        SearchComponent.create(requireContext(), this, rootProvider).inject(this)
     }
 
     override fun onCreateView(

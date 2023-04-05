@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.imgur.core_api.AppRootProvider
 import com.imgur.upload.databinding.FmtUploadBinding
 import com.imgur.upload.di.UploadComponent
 import com.imgur.upload.list.AccountImagesItemAdapter
@@ -41,10 +42,8 @@ class UploadFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        UploadComponent.create(
-            requireActivity().applicationContext,
-            this
-        ).inject(this)
+        val rootProvider = (requireActivity().application as AppRootProvider).getRootProvider()
+        UploadComponent.create(requireContext(), this, rootProvider).inject(this)
     }
 
     override fun onCreateView(

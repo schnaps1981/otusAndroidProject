@@ -2,6 +2,7 @@ package com.imgur.search.di
 
 import android.content.Context
 import androidx.lifecycle.ViewModelStoreOwner
+import com.imgur.core_api.datastore.UserPreferencesProvider
 import com.imgur.core_api.scope.FragmentScope
 import com.imgur.core_api.viewmodel.ViewModelFactoryModule
 import com.imgur.database_api.DatabaseProvider
@@ -14,7 +15,11 @@ import dagger.Component
 
 @FragmentScope
 @Component(
-    dependencies = [NetworkProvider::class, DatabaseProvider::class],
+    dependencies = [
+        NetworkProvider::class,
+        DatabaseProvider::class,
+        UserPreferencesProvider::class
+    ],
     modules = [
         SearchFragmentModule::class,
         RepositoryModule::class,
@@ -30,20 +35,25 @@ interface SearchComponent {
         fun create(
             @BindsInstance viewModelStoreOwner: ViewModelStoreOwner,
             networkProvider: NetworkProvider,
-            databaseProvider: DatabaseProvider
+            databaseProvider: DatabaseProvider,
+            userPrefsProvider: UserPreferencesProvider
         ): SearchComponent
     }
 
     companion object {
-        fun create(context: Context, vmStoreOwner: ViewModelStoreOwner): SearchComponent {
+        fun create(
+            context: Context,
+            vmStoreOwner: ViewModelStoreOwner,
+            userPrefsProvider: UserPreferencesProvider
+        ): SearchComponent {
 
-            val networkProvider = NetworkProvidersFactory.createNetworkBuilder()
+            val networkProvider = NetworkProvidersFactory.createNetworkBuilder(userPrefsProvider)
 
             val databaseProvider = DatabaseProvidersFactory.createDatabaseBuilder(context)
 
             return DaggerSearchComponent
                 .factory()
-                .create(vmStoreOwner, networkProvider, databaseProvider)
+                .create(vmStoreOwner, networkProvider, databaseProvider, userPrefsProvider)
         }
     }
 }

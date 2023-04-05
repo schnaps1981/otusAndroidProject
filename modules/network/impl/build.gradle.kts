@@ -55,6 +55,8 @@ dependencies {
     implementation("com.squareup.moshi:moshi-adapters:${Libs.Deps.moshiVersion}")
 
     implementation("com.jakewharton.timber:timber:5.0.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
     api(project(":modules:network:api"))
+    api(project(":modules:core:api"))
 }
