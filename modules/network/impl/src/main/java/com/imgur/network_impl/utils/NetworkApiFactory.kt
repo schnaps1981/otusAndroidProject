@@ -1,5 +1,6 @@
 package com.imgur.network_impl.utils
 
+import okhttp3.Authenticator
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -20,6 +21,9 @@ class NetworkApiFactory private constructor(private val builder: Builder) {
         var interceptors: List<Interceptor> = mutableListOf()
             private set
 
+        var authenticator: Authenticator? = null
+            private set
+
         fun isDebug(isDebug: Boolean) = apply { this.isDebug = isDebug }
 
         fun connectionTimeOutSeconds(timeOutSec: Long) =
@@ -27,6 +31,9 @@ class NetworkApiFactory private constructor(private val builder: Builder) {
 
         fun interceptors(interceptors: List<Interceptor>) =
             apply { this.interceptors = interceptors }
+
+        fun authenticator(authenticator: AuthAuthenticator) =
+            apply { this.authenticator = authenticator }
 
         fun build(): NetworkApiFactory = NetworkApiFactory(this)
     }
@@ -56,6 +63,10 @@ class NetworkApiFactory private constructor(private val builder: Builder) {
 
             val okHttp = OkHttpClient.Builder()
             okHttp.addInterceptor(logging)
+
+            builder.authenticator?.let {
+                okHttp.authenticator(it)
+            }
 
             builder.interceptors.forEach { okHttp.addInterceptor(it) }
 

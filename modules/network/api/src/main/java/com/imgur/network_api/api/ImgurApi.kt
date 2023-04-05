@@ -9,7 +9,7 @@ import retrofit2.http.*
 
 interface ImgurApi {
 
-    @GET("gallery/search/time/all/{page}/?q_type=jpg")
+    @GET("/3/gallery/search/time/all/{page}/?q_type=jpg")
     suspend fun searchImages(
         @Path("page") pageNum: Int,
         @Query("q") query: String
@@ -22,6 +22,6 @@ interface ImgurApi {
         @Part("name") name: RequestBody? = null
     ): UploadResult
 
-    @GET("account/me/images/")
+    @GET("/3/account/me/images/")
     suspend fun loadAccountImages(): AccountImageResult
 }

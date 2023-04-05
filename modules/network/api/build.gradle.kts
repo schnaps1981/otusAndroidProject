@@ -39,4 +39,6 @@ dependencies {
 
     implementation("com.squareup.retrofit2:retrofit:${Libs.Deps.retrofitVersion}")
     implementation("com.squareup.retrofit2:converter-moshi:${Libs.Deps.retrofitVersion}")
+
+    implementation(project(":modules:core:api"))
 }
