@@ -8,6 +8,7 @@ import com.imgur.favorites.entity.FavoriteEntity
 import com.imgur.favorites.repository.FavoriteRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class FavoritesViewModel @Inject constructor(
@@ -40,6 +41,14 @@ class FavoritesViewModel @Inject constructor(
     }
 
     override fun onItemClick(position: Int, model: FavoriteEntity, resId: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val countDeleted = repository.deleteById(model.id)
 
+            if(countDeleted > 0) {
+                withContext(Dispatchers.Main) {
+                    refresh()
+                }
+            }
+        }
     }
 }
