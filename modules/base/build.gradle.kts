@@ -54,6 +54,8 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.3.0")
     implementation("com.github.bumptech.glide:glide:4.15.1")
 
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
+
     implementation("com.google.dagger:dagger:${Libs.Deps.daggerVersion}")
     kapt("com.google.dagger:dagger-compiler:${Libs.Deps.daggerVersion}")
 

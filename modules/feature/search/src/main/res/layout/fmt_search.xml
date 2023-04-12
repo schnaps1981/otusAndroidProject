@@ -11,31 +11,43 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/purple_200">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/searchEditText"
+            style="@style/AppTheme.InputLayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/search_edit_height"
-            android:layout_marginHorizontal="@dimen/margin_padding_16dp"
-            android:layout_marginTop="@dimen/margin_padding_8dp"
-            android:hint="@string/searchHint"
-            android:imeOptions="actionDone"
-            android:inputType="textFilter"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:text="@={viewModel.searchText}"
-            android:textAlignment="textStart"
-            android:textColor="@android:color/white"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_padding_16dp"
+            android:layout_marginTop="@dimen/margin_padding_12dp"
+            android:layout_marginEnd="@dimen/margin_padding_16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/searchEditTextField"
+                style="@style/AppTheme.TextView.UI1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/search_edit_height"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/searchHint"
+                android:imeOptions="actionDone"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:paddingStart="@dimen/margin_padding_16dp"
+                android:singleLine="true"
+                android:text="@={viewModel.searchText}"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/searchSwipe"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/margin_padding_16dp"
+            android:layout_marginTop="@dimen/margin_padding_8dp"
             app:isSwipeRefreshing="@{viewModel.swipeIsRefreshing}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -55,6 +67,5 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/searchEditText" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

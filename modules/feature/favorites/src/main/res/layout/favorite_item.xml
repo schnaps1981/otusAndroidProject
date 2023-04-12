@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/margin_padding_4dp"
         android:padding="@dimen/margin_padding_16dp"
-        app:cardBackgroundColor="@color/purple_200"
+        app:cardBackgroundColor="@color/colorPrimary"
         app:cardCornerRadius="@dimen/margin_padding_8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,7 +33,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginBottom="@dimen/margin_padding_8dp"
-                android:background="@color/purple_500"
                 android:onClick="@{handler::onClickItem}"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toTopOf="@+id/textView"
@@ -44,21 +43,24 @@
             <com.imgur.base.widget.IconButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="@dimen/margin_padding_8dp"
                 android:layout_marginEnd="@dimen/margin_padding_8dp"
                 app:clickListener="@{handler::onClickItem}"
                 app:icon="@drawable/ic_delete"
-                app:tintColor="@color/white"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tintColor="@color/colorPrimaryDark" />
 
             <TextView
                 android:id="@+id/textView"
+                style="@style/AppTheme.TextView.UI1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin_padding_8dp"
                 android:layout_marginBottom="@dimen/margin_padding_4dp"
+                android:ellipsize="end"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="@{model.title}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -66,8 +68,5 @@
                 tools:text="title" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </com.google.android.material.card.MaterialCardView>
-
-
 </layout>
