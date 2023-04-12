@@ -25,9 +25,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/purple_200"
-            android:onClick="@{handler::onClickItem}"
             android:scaleType="centerCrop"
             app:loadImageUrl="@{model.imageUrl}" />
+
+        <com.imgur.base.widget.IconButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_padding_8dp"
+            android:layout_marginEnd="@dimen/margin_padding_8dp"
+            app:clickListener="@{handler::onClickItem}"
+            app:icon="@drawable/ic_delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tintColor="@color/white" />
 
         <TextView
             android:layout_width="match_parent"

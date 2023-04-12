@@ -5,7 +5,8 @@ import com.imgur.network_api.models.AccountImageItem
 data class AccountItemEntity(
     val id: String = "",
     val imageUrl: String = "",
-    val title: String = ""
+    val title: String = "",
+    val deleteHash: String = ""
 ) {
     fun isEmpty() = this === EMPTY
 
@@ -16,7 +17,8 @@ data class AccountItemEntity(
             return AccountItemEntity(
                 id = value.id,
                 imageUrl = value.link,
-                title = value.title
+                title = value.title,
+                deleteHash = value.deleteHash
             )
         }
     }

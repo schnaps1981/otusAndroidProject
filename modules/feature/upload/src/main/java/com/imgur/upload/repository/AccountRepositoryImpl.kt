@@ -7,6 +7,7 @@ import com.imgur.network_api.api.ImgurApi
 import com.imgur.network_api.extension.Response
 import com.imgur.network_api.extension.safeRun
 import com.imgur.network_api.models.AccountImageResult
+import com.imgur.network_api.models.ImageDeleteResponse
 import com.imgur.network_api.models.UploadResult
 import com.imgur.upload.entity.ReadFileResult
 import okhttp3.MultipartBody
@@ -34,6 +35,10 @@ class AccountRepositoryImpl @Inject constructor(
 
     override suspend fun loadAccountImages(): Response<AccountImageResult> {
         return safeRun { imgurApi.loadAccountImages() }
+    }
+
+    override suspend fun deleteImage(hash: String): Response<ImageDeleteResponse> {
+        return safeRun { imgurApi.deleteImage(hash) }
     }
 
     private fun tryReadFile(uri: Uri): ReadFileResult {

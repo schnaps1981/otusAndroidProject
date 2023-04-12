@@ -1,6 +1,7 @@
 package com.imgur.network_api.api
 
 import com.imgur.network_api.models.AccountImageResult
+import com.imgur.network_api.models.ImageDeleteResponse
 import com.imgur.network_api.models.SearchImageResult
 import com.imgur.network_api.models.UploadResult
 import okhttp3.MultipartBody
@@ -24,4 +25,7 @@ interface ImgurApi {
 
     @GET("/3/account/me/images/")
     suspend fun loadAccountImages(): AccountImageResult
+
+    @DELETE("/3/account/me/image/{deleteHash}")
+    suspend fun deleteImage(@Path("deleteHash") deleteHash: String): ImageDeleteResponse
 }

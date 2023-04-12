@@ -3,14 +3,13 @@ package com.imgur.upload
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.imgur.base.recycler.OnItemClickListener
 import com.imgur.base.extensions.MutableSafeLiveData
+import com.imgur.base.recycler.OnItemClickListener
 import com.imgur.network_api.extension.Response
 import com.imgur.upload.entity.AccountItemEntity
 import com.imgur.upload.repository.AccountRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 class UploadViewModel @Inject constructor(
@@ -67,6 +66,17 @@ class UploadViewModel @Inject constructor(
     }
 
     override fun onItemClick(position: Int, model: AccountItemEntity, resId: Int) {
-        Timber.d("$model")
+        viewModelScope.launch {
+            swipeIsRefreshing.postValue(true)
+            val result = repository.deleteImage(model.deleteHash)
+
+            if (result !is Response.Success) {
+                //todo сщщбщение об ошибке
+
+            } else {
+                refresh()
+            }
+            swipeIsRefreshing.postValue(false)
+        }
     }
 }
