@@ -2,10 +2,11 @@ package com.imgur.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.imgur.base.recycler.OnItemClickListener
-import com.imgur.base.recycler.PagedInteraction
 import com.imgur.base.extensions.MutableSafeLiveData
 import com.imgur.base.extensions.debounce
+import com.imgur.base.recycler.OnItemClickListener
+import com.imgur.base.recycler.PagedInteraction
+import com.imgur.core_api.tools.SnackBarProducer
 import com.imgur.database_api.dto.FavoriteItem
 import com.imgur.network_api.extension.Response
 import com.imgur.search.entity.SearchItemEntity
@@ -14,7 +15,8 @@ import kotlinx.coroutines.*
 import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(
-    private val repository: SearchRepository
+    private val repository: SearchRepository,
+    private val snackBarProducer: SnackBarProducer
 ) : ViewModel(), OnItemClickListener<SearchItemEntity>, PagedInteraction {
 
     override val prefetchDistance: Int
@@ -85,7 +87,8 @@ class SearchViewModel @Inject constructor(
                     }
 
                     else -> {
-                        //todo сщщбщение об ошибке
+                        snackBarProducer.messageStringId.postValue(R.string.searchResultError)
+
                         swipeIsRefreshing.postValue(false)
                     }
                 }
@@ -117,9 +120,13 @@ class SearchViewModel @Inject constructor(
 
             val addedItems = repository.addToFavorite(favoriteItem)
 
-            if (addedItems == 0L) {
-                //todo сообщение об ощибке добавления в избранное
+            val msg = if (addedItems == 0L) {
+                R.string.searchAddedFavoritesError
+            } else {
+                R.string.searchAddedFavorites
             }
+
+            snackBarProducer.messageStringId.postValue(msg)
         }
     }
 

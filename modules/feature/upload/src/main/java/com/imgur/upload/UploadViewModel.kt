@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.imgur.base.extensions.MutableSafeLiveData
 import com.imgur.base.recycler.OnItemClickListener
+import com.imgur.core_api.tools.SnackBarProducer
 import com.imgur.network_api.extension.Response
 import com.imgur.upload.entity.AccountItemEntity
 import com.imgur.upload.repository.AccountRepository
@@ -13,7 +14,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class UploadViewModel @Inject constructor(
-    private val repository: AccountRepository
+    private val repository: AccountRepository,
+    private val snackBarProducer: SnackBarProducer
 ) : ViewModel(), OnItemClickListener<AccountItemEntity> {
 
     val swipeIsRefreshing = MutableSafeLiveData(false)
@@ -57,7 +59,7 @@ class UploadViewModel @Inject constructor(
                 }
 
                 else -> {
-                    //todo сщщбщение об ошибке
+                    snackBarProducer.messageStringId.postValue(R.string.upload_upload_error)
 
                     swipeIsRefreshing.postValue(false)
                 }
@@ -71,8 +73,7 @@ class UploadViewModel @Inject constructor(
             val result = repository.deleteImage(model.deleteHash)
 
             if (result !is Response.Success) {
-                //todo сщщбщение об ошибке
-
+                snackBarProducer.messageStringId.postValue(R.string.upload_delete_error)
             } else {
                 refresh()
             }

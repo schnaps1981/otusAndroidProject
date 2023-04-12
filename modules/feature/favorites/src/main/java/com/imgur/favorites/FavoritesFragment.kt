@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.imgur.core_api.AppRootProvider
 import com.imgur.favorites.databinding.FmtFavoritesBinding
 import com.imgur.favorites.di.FavoritesComponent
 import com.imgur.favorites.list.FavoriteItemAdapter
@@ -28,7 +29,9 @@ class FavoritesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        FavoritesComponent.create(requireActivity().applicationContext, this).inject(this)
+        val rootProvider = (requireActivity().application as AppRootProvider).getRootProvider()
+        FavoritesComponent.create(requireActivity().applicationContext, this, rootProvider)
+            .inject(this)
     }
 
     override fun onCreateView(

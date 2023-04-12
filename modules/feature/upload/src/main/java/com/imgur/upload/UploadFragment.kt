@@ -43,7 +43,7 @@ class UploadFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         val rootProvider = (requireActivity().application as AppRootProvider).getRootProvider()
-        UploadComponent.create(requireContext(), this, rootProvider).inject(this)
+        UploadComponent.create(requireContext(), this, rootProvider, rootProvider).inject(this)
     }
 
     override fun onCreateView(

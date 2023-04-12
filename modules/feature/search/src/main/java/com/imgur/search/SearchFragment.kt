@@ -30,7 +30,7 @@ class SearchFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         val rootProvider = (requireActivity().application as AppRootProvider).getRootProvider()
-        SearchComponent.create(requireContext(), this, rootProvider).inject(this)
+        SearchComponent.create(requireContext(), this, rootProvider, rootProvider).inject(this)
     }
 
     override fun onCreateView(

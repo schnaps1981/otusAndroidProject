@@ -5,6 +5,7 @@ import com.imgur.core_api.AppProvider
 import com.imgur.core_api.RootProvider
 import com.imgur.core_api.datastore.UserPreferencesProvider
 import com.imgur.core_api.navigation.NavigationProvider
+import com.imgur.core_api.tools.MainToolsProvider
 import com.imgur.core_factory.CoreProvidersFactory
 import com.imgur.di.navigation.NavigationComponent
 import dagger.Component
@@ -13,7 +14,8 @@ import dagger.Component
     dependencies = [
         AppProvider::class,
         NavigationProvider::class,
-        UserPreferencesProvider::class
+        UserPreferencesProvider::class,
+        MainToolsProvider::class
     ]
 )
 interface RootProviderComponent : RootProvider {
@@ -28,10 +30,13 @@ interface RootProviderComponent : RootProvider {
             val userPreferencesProvider =
                 CoreProvidersFactory.createUserPreferencesProvider(appProvider)
 
+            val mainToolsProvider = MainToolsComponent.create(application)
+
             return DaggerRootProviderComponent.builder()
                 .appProvider(appProvider)
                 .navigationProvider(navProvider)
                 .userPreferencesProvider(userPreferencesProvider)
+                .mainToolsProvider(mainToolsProvider)
                 .build()
         }
     }

@@ -3,6 +3,7 @@ package com.imgur.favorites.di
 import android.content.Context
 import androidx.lifecycle.ViewModelStoreOwner
 import com.imgur.core_api.scope.FragmentScope
+import com.imgur.core_api.tools.MainToolsProvider
 import com.imgur.core_api.viewmodel.ViewModelFactoryModule
 import com.imgur.database_api.DatabaseProvider
 import com.imgur.database_factory.DatabaseProvidersFactory
@@ -12,7 +13,7 @@ import dagger.Component
 
 @FragmentScope
 @Component(
-    dependencies = [DatabaseProvider::class],
+    dependencies = [DatabaseProvider::class, MainToolsProvider::class],
     modules = [FavoritesFragmentModule::class, ViewModelFactoryModule::class, RepositoryModule::class]
 )
 interface FavoritesComponent {
@@ -23,17 +24,23 @@ interface FavoritesComponent {
     interface Factory {
         fun create(
             @BindsInstance viewModelStoreOwner: ViewModelStoreOwner,
-            databaseProvider: DatabaseProvider
+            databaseProvider: DatabaseProvider,
+            mainToolsProvider: MainToolsProvider
         ): FavoritesComponent
     }
 
     companion object {
 
-        fun create(context: Context, vmStoreOwner: ViewModelStoreOwner): FavoritesComponent {
+        fun create(
+            context: Context,
+            vmStoreOwner: ViewModelStoreOwner,
+            mainToolsProvider: MainToolsProvider
+        ): FavoritesComponent {
 
             val databaseProvider = DatabaseProvidersFactory.createDatabaseBuilder(context)
 
-            return DaggerFavoritesComponent.factory().create(vmStoreOwner, databaseProvider)
+            return DaggerFavoritesComponent.factory()
+                .create(vmStoreOwner, databaseProvider, mainToolsProvider)
         }
     }
 }

@@ -1,13 +1,17 @@
 package com.imgur.main
 
 import android.os.Bundle
+import android.view.Gravity
 import androidx.activity.viewModels
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.github.terrakok.cicerone.Navigator
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.androidx.AppNavigator
+import com.google.android.material.snackbar.Snackbar
 import com.imgur.core_api.AppRootProvider
 import com.imgur.main.databinding.ActivityMainBinding
 import com.imgur.main.di.MainActivityComponent
@@ -29,6 +33,8 @@ class MainActivity : AppCompatActivity() {
     @Inject
     @Named("overlay")
     lateinit var overlayNavigatorHolder: NavigatorHolder
+
+    private var snackbar: Snackbar? = null
 
     private val navigator: Navigator =
         AppNavigator(this, R.id.navContainer, supportFragmentManager)
@@ -55,11 +61,39 @@ class MainActivity : AppCompatActivity() {
 
         navigatorHolder.setNavigator(navigator)
         overlayNavigatorHolder.setNavigator(overlayNavigator)
+
+        viewModel.snackBarMessage.observe(this) {
+            if (it != 0) {
+                showSnackBar(it)
+            }
+        }
+    }
+
+    private fun showSnackBar(@StringRes messageId: Int) {
+
+        val msg = getString(messageId)
+
+        snackbar = Snackbar.make(
+            binding.snackBarAnchor,
+            msg,
+            Snackbar.LENGTH_LONG
+        )
+
+        val params = snackbar!!.view.layoutParams as CoordinatorLayout.LayoutParams
+        params.anchorId = R.id.snackBarAnchor
+
+        params.gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
+        params.anchorGravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
+        snackbar!!.view.layoutParams = params
+
+        snackbar!!.show()
     }
 
     override fun onPause() {
         navigatorHolder.removeNavigator()
         overlayNavigatorHolder.removeNavigator()
+
+        snackbar?.dismiss()
 
         super.onPause()
     }

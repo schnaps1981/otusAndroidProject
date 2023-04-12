@@ -2,8 +2,9 @@ package com.imgur.favorites
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.imgur.base.recycler.OnItemClickListener
 import com.imgur.base.extensions.MutableSafeLiveData
+import com.imgur.base.recycler.OnItemClickListener
+import com.imgur.core_api.tools.SnackBarProducer
 import com.imgur.favorites.entity.FavoriteEntity
 import com.imgur.favorites.repository.FavoriteRepository
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +13,8 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class FavoritesViewModel @Inject constructor(
-    private val repository: FavoriteRepository
+    private val repository: FavoriteRepository,
+    private val snackBarProducer: SnackBarProducer
 ) : ViewModel(),
     OnItemClickListener<FavoriteEntity> {
 
@@ -44,10 +46,12 @@ class FavoritesViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             val countDeleted = repository.deleteById(model.id)
 
-            if(countDeleted > 0) {
+            if (countDeleted > 0) {
                 withContext(Dispatchers.Main) {
                     refresh()
                 }
+            } else {
+                snackBarProducer.messageStringId.postValue(R.string.favorites_error_delete)
             }
         }
     }

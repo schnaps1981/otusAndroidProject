@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModelStoreOwner
 import com.imgur.core_api.datastore.UserPreferencesProvider
 import com.imgur.core_api.scope.FragmentScope
+import com.imgur.core_api.tools.MainToolsProvider
 import com.imgur.core_api.viewmodel.ViewModelFactoryModule
 import com.imgur.network_api.NetworkProvider
 import com.imgur.network_factory.NetworkProvidersFactory
@@ -18,7 +19,7 @@ import dagger.Component
         UploadRepositoryModule::class,
         ViewModelFactoryModule::class
     ],
-    dependencies = [NetworkProvider::class, UserPreferencesProvider::class]
+    dependencies = [NetworkProvider::class, UserPreferencesProvider::class, MainToolsProvider::class]
 )
 interface UploadComponent {
 
@@ -30,7 +31,8 @@ interface UploadComponent {
             @BindsInstance context: Context,
             @BindsInstance viewModelStoreOwner: ViewModelStoreOwner,
             databaseProvider: NetworkProvider,
-            userPreferencesProvider: UserPreferencesProvider
+            userPreferencesProvider: UserPreferencesProvider,
+            mainToolsProvider: MainToolsProvider
         ): UploadComponent
     }
 
@@ -38,7 +40,8 @@ interface UploadComponent {
         fun create(
             context: Context,
             vmStoreOwner: ViewModelStoreOwner,
-            userPreferencesProvider: UserPreferencesProvider
+            userPreferencesProvider: UserPreferencesProvider,
+            mainToolsProvider: MainToolsProvider
         ): UploadComponent {
 
             val networkProvider =
@@ -46,7 +49,13 @@ interface UploadComponent {
 
             return DaggerUploadComponent
                 .factory()
-                .create(context, vmStoreOwner, networkProvider, userPreferencesProvider)
+                .create(
+                    context,
+                    vmStoreOwner,
+                    networkProvider,
+                    userPreferencesProvider,
+                    mainToolsProvider
+                )
         }
     }
 }

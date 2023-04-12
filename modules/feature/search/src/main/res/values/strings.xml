@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="searchHint">Слово для поиска</string>
+
+    <string name="searchAddedFavorites">Добавлено в избранное</string>
+    <string name="searchAddedFavoritesError">Ошибка добавления в избранное</string>
+
+    <string name="searchResultError">Произошла ошибка</string>
 </resources>
