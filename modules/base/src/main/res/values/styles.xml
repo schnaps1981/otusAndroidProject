@@ -27,12 +27,18 @@
     <style name="AppTheme.TextView.UI1">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:lineSpacingExtra">2dp</item>
-        <item name="android:textSize">@dimen/text_size_16dp</item>
+        <item name="android:textSize">@dimen/text_size_16sp</item>
     </style>
 
     <style name="AppTheme.TextView.UI2">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:lineSpacingExtra">1dp</item>
         <item name="android:textSize">@dimen/text_size_12sp</item>
+    </style>
+
+    <style name="AppTheme.TextView.Title">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:lineSpacingExtra">1dp</item>
+        <item name="android:textSize">@dimen/text_size_32sp</item>
     </style>
 </resources>

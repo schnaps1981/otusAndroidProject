@@ -39,5 +39,18 @@
                 tools:listitem="@layout/favorite_item" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <TextView
+            android:id="@+id/favoriteNothingText"
+            style="@style/AppTheme.TextView.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/listIsEmpty"
+            android:textColor="@color/colorPrimaryWithAlpha20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visible="@{viewModel.favoriteList.empty}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

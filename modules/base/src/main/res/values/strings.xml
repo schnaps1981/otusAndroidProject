@@ -4,4 +4,6 @@
 
     <string name="loginLoginBtn">Логин в Imgur</string>
 
+    <string name="listIsEmpty">Ничего нет</string>
+
 </resources>
