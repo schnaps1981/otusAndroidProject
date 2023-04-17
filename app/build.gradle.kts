@@ -42,6 +42,11 @@ android {
 }
 
 dependencies {
+    testImplementation("junit:junit:${Libs.TestDeps.junitVersion}")
+    androidTestImplementation("androidx.test.ext:junit:${Libs.TestDeps.junitExtVersion}")
+    androidTestImplementation("androidx.test.ext:junit-ktx:${Libs.TestDeps.junitExtVersion}")
+    androidTestImplementation("com.kaspersky.android-components:kaspresso:1.5.0")
+
     implementation("androidx.core:core-ktx:${Libs.Deps.coreKtxVersion}")
     implementation("androidx.appcompat:appcompat:${Libs.Deps.appCompatVersion}")
 
