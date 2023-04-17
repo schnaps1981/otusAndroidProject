@@ -49,6 +49,9 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:${Libs.TestDeps.junitExtVersion}")
     androidTestImplementation("androidx.test.espresso:espresso-core:${Libs.TestDeps.espresspVersion}")
 
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
+    testImplementation("com.squareup.retrofit2:retrofit:${Libs.Deps.retrofitVersion}")
+
     implementation("com.google.dagger:dagger:${Libs.Deps.daggerVersion}")
     kapt("com.google.dagger:dagger-compiler:${Libs.Deps.daggerVersion}")
 
