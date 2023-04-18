@@ -3,6 +3,7 @@ package com.imgur.search.di
 import android.content.Context
 import androidx.lifecycle.ViewModelStoreOwner
 import com.imgur.core_api.datastore.UserPreferencesProvider
+import com.imgur.core_api.dispatchers.DispatchersModule
 import com.imgur.core_api.scope.FragmentScope
 import com.imgur.core_api.tools.MainToolsProvider
 import com.imgur.core_api.viewmodel.ViewModelFactoryModule
@@ -25,7 +26,8 @@ import dagger.Component
     modules = [
         SearchFragmentModule::class,
         RepositoryModule::class,
-        ViewModelFactoryModule::class
+        ViewModelFactoryModule::class,
+        DispatchersModule::class
     ]
 )
 interface SearchComponent {

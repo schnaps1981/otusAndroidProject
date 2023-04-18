@@ -3,6 +3,7 @@ package com.imgur.upload.di
 import android.content.Context
 import androidx.lifecycle.ViewModelStoreOwner
 import com.imgur.core_api.datastore.UserPreferencesProvider
+import com.imgur.core_api.dispatchers.DispatchersModule
 import com.imgur.core_api.scope.FragmentScope
 import com.imgur.core_api.tools.MainToolsProvider
 import com.imgur.core_api.viewmodel.ViewModelFactoryModule
@@ -14,12 +15,17 @@ import dagger.Component
 
 @FragmentScope
 @Component(
+    dependencies = [
+        NetworkProvider::class,
+        UserPreferencesProvider::class,
+        MainToolsProvider::class
+    ],
     modules = [
         UploadFragmentModule::class,
         UploadRepositoryModule::class,
-        ViewModelFactoryModule::class
-    ],
-    dependencies = [NetworkProvider::class, UserPreferencesProvider::class, MainToolsProvider::class]
+        ViewModelFactoryModule::class,
+        DispatchersModule::class
+    ]
 )
 interface UploadComponent {
 

@@ -6,6 +6,7 @@ import com.imgur.base.extensions.MutableSafeLiveData
 import com.imgur.base.extensions.debounce
 import com.imgur.base.recycler.OnItemClickListener
 import com.imgur.base.recycler.PagedInteraction
+import com.imgur.core_api.dispatchers.IoDispatcher
 import com.imgur.core_api.tools.SnackBarProducer
 import com.imgur.database_api.dto.FavoriteItem
 import com.imgur.network_api.extension.Response
@@ -16,7 +17,8 @@ import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(
     private val repository: SearchRepository,
-    private val snackBarProducer: SnackBarProducer
+    private val snackBarProducer: SnackBarProducer,
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel(), OnItemClickListener<SearchItemEntity>, PagedInteraction {
 
     override val prefetchDistance: Int
@@ -26,7 +28,7 @@ class SearchViewModel @Inject constructor(
     private var hasNextPage = true
 
     private val job = SupervisorJob()
-    private val scope = CoroutineScope(Dispatchers.IO + job)
+    private val scope = CoroutineScope(ioDispatcher + job)
 
     val swipeIsRefreshing = MutableSafeLiveData(false)
 
@@ -111,7 +113,7 @@ class SearchViewModel @Inject constructor(
     }
 
     override fun onItemClick(position: Int, model: SearchItemEntity, resId: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(ioDispatcher) {
             val favoriteItem = FavoriteItem(
                 imageId = model.id,
                 imageUrl = model.imageUrl,

@@ -5,17 +5,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.imgur.base.extensions.MutableSafeLiveData
 import com.imgur.base.recycler.OnItemClickListener
+import com.imgur.core_api.dispatchers.IoDispatcher
 import com.imgur.core_api.tools.SnackBarProducer
 import com.imgur.network_api.extension.Response
 import com.imgur.upload.entity.AccountItemEntity
 import com.imgur.upload.repository.AccountRepository
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class UploadViewModel @Inject constructor(
     private val repository: AccountRepository,
-    private val snackBarProducer: SnackBarProducer
+    private val snackBarProducer: SnackBarProducer,
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel(), OnItemClickListener<AccountItemEntity> {
 
     val swipeIsRefreshing = MutableSafeLiveData(false)
@@ -27,7 +30,7 @@ class UploadViewModel @Inject constructor(
     }
 
     fun refresh() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(ioDispatcher) {
             swipeIsRefreshing.postValue(true)
 
             when (val result = repository.loadAccountImages()) {
@@ -50,7 +53,7 @@ class UploadViewModel @Inject constructor(
     }
 
     fun chooseImage(uri: Uri) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(ioDispatcher) {
             swipeIsRefreshing.postValue(true)
 
             when (repository.uploadImage(uri)) {
