@@ -51,6 +51,8 @@ dependencies {
 
     testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
     testImplementation("com.squareup.retrofit2:retrofit:${Libs.Deps.retrofitVersion}")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
 
     implementation("com.google.dagger:dagger:${Libs.Deps.daggerVersion}")
     kapt("com.google.dagger:dagger-compiler:${Libs.Deps.daggerVersion}")

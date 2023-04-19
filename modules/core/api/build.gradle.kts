@@ -2,6 +2,11 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("kotlin-allopen")
+}
+
+configure<org.jetbrains.kotlin.allopen.gradle.AllOpenExtension> {
+    annotation("com.imgur.core_api.viewmodel.TestOpen")
 }
 
 android {

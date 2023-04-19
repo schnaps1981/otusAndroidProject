@@ -6,9 +6,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import com.imgur.base.recycler.AbstractRecyclerAdapter
 import com.imgur.base.recycler.OnItemClickListener
+import com.imgur.core_api.viewmodel.TestOpen
 import com.imgur.favorites.R
 import com.imgur.favorites.entity.FavoriteEntity
 
+@TestOpen
 class FavoriteItemAdapter(
     onItemClickListener: OnItemClickListener<FavoriteEntity>
 ) : AbstractRecyclerAdapter<FavoriteEntity, FavoriteItemHolder>(

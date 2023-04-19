@@ -13,6 +13,7 @@ import com.imgur.network_api.extension.Response
 import com.imgur.search.entity.SearchItemEntity
 import com.imgur.search.repository.SearchRepository
 import kotlinx.coroutines.*
+import timber.log.Timber
 import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(

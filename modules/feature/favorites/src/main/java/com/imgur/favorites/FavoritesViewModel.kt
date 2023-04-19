@@ -7,14 +7,15 @@ import com.imgur.base.recycler.OnItemClickListener
 import com.imgur.core_api.dispatchers.IoDispatcher
 import com.imgur.core_api.dispatchers.MainDispatcher
 import com.imgur.core_api.tools.SnackBarProducer
+import com.imgur.core_api.viewmodel.TestOpen
 import com.imgur.favorites.entity.FavoriteEntity
 import com.imgur.favorites.repository.FavoriteRepository
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+@TestOpen
 class FavoritesViewModel @Inject constructor(
     private val repository: FavoriteRepository,
     private val snackBarProducer: SnackBarProducer,

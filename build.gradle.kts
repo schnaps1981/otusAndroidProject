@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath("com.android.tools.build:gradle:7.3.1")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Libs.kotlinVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-allopen:${Libs.kotlinVersion}")
     }
 }
 
@@ -15,7 +16,7 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-   }
+    }
 }
 
 tasks.register("clean", Delete::class) {
