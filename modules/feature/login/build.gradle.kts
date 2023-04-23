@@ -1,16 +1,15 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
 }
 
 android {
-    namespace = "com.imgur.login"
-    compileSdk = 33
+    namespace = "${libs.versions.applicationId.get()}.login"
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 26
-        targetSdk = 33
+        minSdk = libs.versions.minSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -26,11 +25,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 
     buildFeatures {
@@ -40,24 +39,18 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.8.0")
+    implementation(libs.android.coreKtx)
+    implementation(libs.android.material)
+    implementation(libs.android.appcompat)
+    implementation(libs.android.fragment.ktx)
+    implementation(libs.android.webkit)
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(libs.dagger)
+    kapt(libs.dagger.kapt)
 
-    implementation("com.google.dagger:dagger:${Libs.Deps.daggerVersion}")
-    kapt("com.google.dagger:dagger-compiler:${Libs.Deps.daggerVersion}")
+    implementation(libs.cicerone)
 
-    implementation("androidx.fragment:fragment-ktx:${Libs.Deps.fragmentKtxVersion}")
-
-    implementation("com.github.terrakok:cicerone:${Libs.Deps.ciceroneVersion}")
-
-    implementation("androidx.webkit:webkit:1.6.1")
-
-    implementation("com.jakewharton.timber:timber:5.0.1")
+    implementation(libs.timber)
 
     implementation(project(":modules:core:api"))
     implementation(project(":modules:base"))

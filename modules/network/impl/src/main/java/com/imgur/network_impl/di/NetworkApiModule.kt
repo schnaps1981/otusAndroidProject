@@ -1,6 +1,6 @@
 package com.imgur.network_impl.di
 
-import com.imgur.core_api.BuildConfig
+import com.imgur.network_impl.BuildConfig
 import com.imgur.core_api.Constants
 import com.imgur.network_api.api.ImgurApi
 import com.imgur.network_impl.utils.ImgurRefreshTokenApi

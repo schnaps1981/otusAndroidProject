@@ -1,17 +1,16 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
 }
 
 android {
-    namespace = "${Libs.Project.applicationId}.core_impl"
+    namespace = "${libs.versions.applicationId.get()}.core_impl"
 
-    compileSdk = Libs.Project.compileSdk
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = Libs.Project.minSdk
-        targetSdk = Libs.Project.targetSdk
+        minSdk = libs.versions.minSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -27,19 +26,19 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 }
 
 dependencies {
-    implementation("com.google.dagger:dagger:${Libs.Deps.daggerVersion}")
-    kapt("com.google.dagger:dagger-compiler:${Libs.Deps.daggerVersion}")
+    implementation(libs.dagger)
+    kapt(libs.dagger.kapt)
 
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation(libs.android.datastore.preferences)
 
     api(project(":modules:core:api"))
 }

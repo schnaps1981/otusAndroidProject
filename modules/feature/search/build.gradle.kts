@@ -1,16 +1,16 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
 }
 
 android {
-    namespace = "${Libs.Project.applicationId}.search"
-    compileSdk = Libs.Project.compileSdk
+    namespace = "${libs.versions.applicationId.get()}.search"
+
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = Libs.Project.minSdk
-        targetSdk = Libs.Project.targetSdk
+        minSdk = libs.versions.minSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -31,38 +31,36 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 }
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:${Libs.Deps.coreKtxVersion}")
-    implementation("androidx.appcompat:appcompat:${Libs.Deps.appCompatVersion}")
-    implementation("com.google.android.material:material:${Libs.Deps.materialVersion}")
+    implementation(libs.android.coreKtx)
+    implementation(libs.android.appcompat)
+    implementation(libs.android.material)
+    implementation(libs.android.recycler)
+    implementation(libs.android.swiperefresh)
 
-    testImplementation("junit:junit:${Libs.TestDeps.junitVersion}")
-    androidTestImplementation("androidx.test.ext:junit:${Libs.TestDeps.junitExtVersion}")
-    androidTestImplementation("androidx.test.espresso:espresso-core:${Libs.TestDeps.espresspVersion}")
+    testImplementation(libs.test.junit)
+    androidTestImplementation(libs.test.junit.ext)
+    androidTestImplementation(libs.test.espresso.core)
+    testImplementation(libs.test.mockito.kotlin)
 
-    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
-    testImplementation("com.squareup.retrofit2:retrofit:${Libs.Deps.retrofitVersion}")
+    testImplementation(libs.retrofit)
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
     testImplementation("androidx.arch.core:core-testing:2.2.0")
 
-    implementation("com.google.dagger:dagger:${Libs.Deps.daggerVersion}")
-    kapt("com.google.dagger:dagger-compiler:${Libs.Deps.daggerVersion}")
+    implementation(libs.dagger)
+    kapt(libs.dagger.kapt)
 
-    implementation("androidx.fragment:fragment-ktx:${Libs.Deps.fragmentKtxVersion}")
-
-    implementation("com.jakewharton.timber:timber:5.0.1")
-
-    implementation("androidx.recyclerview:recyclerview:1.3.0")
-    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation(libs.android.fragment.ktx)
+    implementation(libs.timber)
 
     implementation(project(":modules:core:api"))
     implementation(project(":modules:base"))

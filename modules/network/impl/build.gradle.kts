@@ -1,17 +1,16 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
 }
 
 android {
-    namespace = "${Libs.Project.applicationId}.network_impl"
+    namespace = "${libs.versions.applicationId.get()}.network_impl"
 
-    compileSdk = Libs.Project.compileSdk
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = Libs.Project.minSdk
-        targetSdk = Libs.Project.targetSdk
+        minSdk = libs.versions.minSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -27,35 +26,35 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 }
 
 dependencies {
 
-    testImplementation("junit:junit:${Libs.TestDeps.junitVersion}")
-    androidTestImplementation("androidx.test.ext:junit:${Libs.TestDeps.junitExtVersion}")
-    androidTestImplementation("androidx.test.espresso:espresso-core:${Libs.TestDeps.espresspVersion}")
+    implementation(libs.dagger)
+    kapt(libs.dagger.kapt)
 
-    implementation("com.google.dagger:dagger:${Libs.Deps.daggerVersion}")
-    kapt("com.google.dagger:dagger-compiler:${Libs.Deps.daggerVersion}")
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.urlconnection)
+    implementation(libs.okhttp.interceptor)
 
-    implementation("com.squareup.okhttp3:okhttp:${Libs.Deps.okHttpVersion}")
-    implementation("com.squareup.okhttp3:okhttp-urlconnection:${Libs.Deps.okHttpVersion}")
-    implementation("com.squareup.okhttp3:logging-interceptor:${Libs.Deps.okHttpVersion}")
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.moshi)
 
-    implementation("com.squareup.retrofit2:retrofit:${Libs.Deps.retrofitVersion}")
-    implementation("com.squareup.retrofit2:converter-moshi:${Libs.Deps.retrofitVersion}")
+    implementation(libs.moshi)
+    implementation(libs.moshi.adapters)
 
-    implementation("com.squareup.moshi:moshi-kotlin:${Libs.Deps.moshiVersion}")
-    implementation("com.squareup.moshi:moshi-adapters:${Libs.Deps.moshiVersion}")
-
-    implementation("com.jakewharton.timber:timber:5.0.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation(libs.timber)
+    implementation(libs.kotlin.coroutines.core)
 
     api(project(":modules:network:api"))
     api(project(":modules:core:api"))

@@ -1,17 +1,16 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
 }
 
 android {
-    namespace = "${Libs.Project.applicationId}.main"
+    namespace = "${libs.versions.applicationId.get()}.main"
 
-    compileSdk = Libs.Project.compileSdk
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = Libs.Project.minSdk
-        targetSdk = Libs.Project.targetSdk
+        minSdk = libs.versions.minSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -33,33 +32,27 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 }
 
 dependencies {
-    testImplementation("junit:junit:${Libs.TestDeps.junitVersion}")
-    androidTestImplementation("androidx.test.ext:junit:${Libs.TestDeps.junitExtVersion}")
-    androidTestImplementation("androidx.test.espresso:espresso-core:${Libs.TestDeps.espresspVersion}")
+    implementation(libs.android.coreKtx)
+    implementation(libs.android.appcompat)
+    implementation(libs.android.material)
+    implementation(libs.android.lifecycle.ktx)
+    implementation(libs.android.lifecycle.ext)
+    implementation(libs.android.activity.ktx)
 
-    implementation("androidx.core:core-ktx:${Libs.Deps.coreKtxVersion}")
-    implementation("androidx.appcompat:appcompat:${Libs.Deps.appCompatVersion}")
-    implementation("com.google.android.material:material:${Libs.Deps.materialVersion}")
+    implementation(libs.dagger)
+    kapt(libs.dagger.kapt)
 
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Libs.Deps.lifecycleRuntimeVersion}")
-    implementation("androidx.lifecycle:lifecycle-extensions:${Libs.Deps.lifecycleExtensionsVersion}")
-
-    implementation("com.google.dagger:dagger:${Libs.Deps.daggerVersion}")
-    kapt("com.google.dagger:dagger-compiler:${Libs.Deps.daggerVersion}")
-
-    implementation("androidx.activity:activity-ktx:${Libs.Deps.activityKtxVersion}")
-
-    implementation("com.github.terrakok:cicerone:${Libs.Deps.ciceroneVersion}")
+    implementation(libs.cicerone)
 
     implementation(project(":modules:core:api"))
     implementation(project(":modules:base"))

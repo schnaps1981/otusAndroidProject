@@ -1,20 +1,20 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
 }
 
 android {
-    namespace = Libs.Project.applicationId
+    namespace = libs.versions.applicationId.get()
 
-    compileSdk = Libs.Project.compileSdk
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = Libs.Project.applicationId
-        minSdk = Libs.Project.minSdk
-        targetSdk = Libs.Project.targetSdk
-        versionCode = Libs.Project.versionCode
-        versionName = Libs.Project.versionName
+        applicationId = libs.versions.applicationId.get()
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
+        versionCode = libs.versions.versionCode.get().toInt()
+        versionName = libs.versions.versionName.get()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -33,29 +33,28 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 }
 
 dependencies {
-    testImplementation("junit:junit:${Libs.TestDeps.junitVersion}")
-    androidTestImplementation("androidx.test.ext:junit:${Libs.TestDeps.junitExtVersion}")
-    androidTestImplementation("androidx.test.ext:junit-ktx:${Libs.TestDeps.junitExtVersion}")
-    androidTestImplementation("com.kaspersky.android-components:kaspresso:1.5.0")
+    testImplementation(libs.test.junit)
+    androidTestImplementation(libs.test.junit.ext)
+    androidTestImplementation(libs.test.junit.ktx)
+    androidTestImplementation(libs.test.kaspresso)
 
-    implementation("androidx.core:core-ktx:${Libs.Deps.coreKtxVersion}")
-    implementation("androidx.appcompat:appcompat:${Libs.Deps.appCompatVersion}")
+    implementation(libs.android.coreKtx)
+    implementation(libs.android.appcompat)
 
-    implementation("com.google.dagger:dagger:${Libs.Deps.daggerVersion}")
-    kapt("com.google.dagger:dagger-compiler:${Libs.Deps.daggerVersion}")
+    implementation(libs.dagger)
+    kapt(libs.dagger.kapt)
 
-    implementation("com.github.terrakok:cicerone:${Libs.Deps.ciceroneVersion}")
-
-    implementation("com.jakewharton.timber:timber:5.0.1")
+    implementation(libs.cicerone)
+    implementation(libs.timber)
 
     implementation(project(":modules:core:factory"))
 
